@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    environment:
+      ELASTICSEARCH_HOST: $ELASTICSEARCH_HOST
+      ELASTICSEARCH_PASSWORD: $ELASTICSEARCH_PASSWORD
+      ELASTICSEARCH_PORT: $ELASTICSEARCH_PORT
+      ELASTICSEARCH_USE_SSL: $ELASTICSEARCH_USE_SSL
+      ELASTICSEARCH_USERNAME: $ELASTICSEARCH_USERNAME
+      STATIC_URL: $STATIC_URL
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"

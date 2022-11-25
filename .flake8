@@ -1,0 +1,12 @@
+[flake8]
+ignore = D, W504
+exclude =
+  __init__.py,
+  apps.py,
+  manage.py,
+  migrations,
+  config/*,
+  tests,
+  tests.py,
+  urls.py
+max-complexity = 10
