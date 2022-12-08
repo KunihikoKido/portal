@@ -13,19 +13,9 @@ class BaseDocument(models.Model):
 
     pub_date = models.DateTimeField(
         verbose_name=_("publication date"),
-        default=timezone.now,
-        db_index=True,
-        help_text=_('Set the date and time you want your '
-                    'post to be published.')
-    )
+        default=timezone.now, db_index=True)
 
-    is_active = models.BooleanField(
-        _('active'), default=False,
-        help_text=_(
-            'Designates whether this article should be treated as active. '
-            'Unselect this instead of deleting articles.'
-        ),
-    )
+    is_active = models.BooleanField(_('active'), default=False)
 
     class Meta:
         abstract = True
@@ -46,8 +36,8 @@ class ProductDocument(BaseDocument):
     price_currency = models.CharField(
         _('price currency'), blank=True, max_length=100)
 
-    rating = models.PositiveIntegerField(
-        _('review rating'), default=0, blank=False, null=False)
+    rating = models.FloatField(
+        _('review rating'), default=0.0, blank=False, null=False)
     review_count = models.PositiveIntegerField(
         _('review count'), default=0, blank=False, null=False)
 
