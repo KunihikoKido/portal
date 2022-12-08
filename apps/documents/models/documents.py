@@ -46,9 +46,10 @@ class ProductDocument(BaseDocument):
     price_currency = models.CharField(
         _('price currency'), blank=True, max_length=100)
 
-    rating = models.FloatField(_('review rating'))
-    review_count = models.IntegerField(
-        _('review count'), blank=True, null=True)
+    rating = models.PositiveIntegerField(
+        _('review rating'), default=0, blank=False, null=False)
+    review_count = models.PositiveIntegerField(
+        _('review count'), default=0, blank=False, null=False)
 
     category_classifications = models.ManyToManyField(
         'documents.Classification',
