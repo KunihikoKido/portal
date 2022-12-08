@@ -38,11 +38,13 @@ class Classification(models.Model):
     def __str__(self):
         return self.name
 
-    def cleaned_synonyms(self):
-        return [s for s in self.synonyms.splitlines() if s]
+    def clean_splitlines(self, text):
+        return '\n'.join([t for t in text.splitlines() if t])
 
-    def cleaned_antonyms(self):
-        return [s for s in self.antonyms.splitlines() if s]
+    def save(self, *args, **kwargs):
+        self.synonyms = self.clean_splitlines(self.synonyms)
+        self.antonyms = self.clean_splitlines(self.antonyms)
+        super().save(*args, **kwargs)
 
     def get_key(self):
         return '≠'.join(['%06d' % self.order, self.slug, self.name])

@@ -12,7 +12,7 @@ class ClassificationQuerySerializerTest(TestCase):
             order=2,
             classification_type='category',
             language="ja",
-            synonyms="世界遺産ツアー\n半日観光",
+            synonyms="世界遺産ツアー\n半日観光\n\n",
             antonyms="空港送迎"
         )
         self.classification.save()
