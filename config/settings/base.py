@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.documents',
-    'apps.percolator',
 ]
 
 MIDDLEWARE = [
