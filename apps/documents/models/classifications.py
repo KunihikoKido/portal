@@ -37,3 +37,12 @@ class Classification(models.Model):
 
     def __str__(self):
         return self.name
+
+    def cleaned_synonyms(self):
+        return [s for s in self.synonyms.splitlines() if s]
+
+    def cleaned_antonyms(self):
+        return [s for s in self.antonyms.splitlines() if s]
+
+    def get_key(self):
+        return '≠'.join(['%06d' % self.order, self.slug, self.name])

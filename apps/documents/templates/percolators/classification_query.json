@@ -6,7 +6,7 @@
             "_all": "{{ classification.name }}"
           }
         }
-      {% for keyword in classification.synonyms.splitlines %},{
+      {% for keyword in classification.cleaned_synonyms %},{
         "match_phrase": {
           "_all": "{{ keyword|escapejs }}"
         }
@@ -14,7 +14,7 @@
     ],
     "minimum_should_match": "1",
     "must_not": [
-      {% for keyword in classification.antonyms.splitlines %}{
+      {% for keyword in classification.cleaned_antonyms %}{
         "match_phrase": {
           "_all": "{{ keyword|escapejs }}"
         }

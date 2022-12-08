@@ -9,7 +9,7 @@ class ClassificationQuerySerializerTest(TestCase):
             id=1,
             slug='sightseeing',
             name='観光ツアー',
-            order=0,
+            order=2,
             classification_type='category',
             language="ja",
             synonyms="世界遺産ツアー\n半日観光",
@@ -40,9 +40,10 @@ class ClassificationQuerySerializerTest(TestCase):
                 "classification_meta": {
                     "slug": "sightseeing",
                     "name": "観光ツアー",
-                    "order": 0,
+                    "order": 2,
                     "classification_type": "category",
-                    "language": "ja"
+                    "language": "ja",
+                    "key": "000002≠sightseeing≠観光ツアー"
                 }
             }
         )
