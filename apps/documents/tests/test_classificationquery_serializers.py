@@ -12,7 +12,7 @@ class ClassificationQuerySerializerTest(TestCase):
             order=2,
             classification_type='category',
             language="ja",
-            synonyms="世界遺産ツアー\n半日観光\n\n",
+            synonyms="世界遺産\n半日観光\n\n",
             antonyms="空港送迎"
         )
         self.classification.save()
@@ -28,7 +28,7 @@ class ClassificationQuerySerializerTest(TestCase):
                     'bool': {
                         'should': [
                             {'match_phrase': {'_all': '観光ツアー'}},
-                            {'match_phrase': {'_all': '世界遺産ツアー'}},
+                            {'match_phrase': {'_all': '世界遺産'}},
                             {'match_phrase': {'_all': '半日観光'}}
                         ],
                         'minimum_should_match': '1',
