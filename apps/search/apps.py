@@ -22,8 +22,8 @@ class SearchConfig(AppConfig):
 
     def ready(self):
         client = ELASTICSEARCH['client']
-        for name, params in get_templates(name='component_templates'):
-            client.cluster.put_component_template(name=name, **params)
+        for name, templates in get_templates(name='component_templates'):
+            client.cluster.put_component_template(name=name, **templates)
 
-        for name, params in get_templates(name='index_templates'):
-            client.indices.put_index_template(name=name, **params)
+        for name, templates in get_templates(name='index_templates'):
+            client.indices.put_index_template(name=name, **templates)

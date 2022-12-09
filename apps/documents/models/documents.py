@@ -55,9 +55,9 @@ class BaseDocument(models.Model):
 
     @classmethod
     def put_mapping(cls):
-        params = json.loads(render_to_string(cls._meta.mapping_template))
+        templates = json.loads(render_to_string(cls._meta.mapping_template))
         return cls._meta.elasticsearch.indices.put_mapping(
-            index=cls._meta.index_name, **params)
+            index=cls._meta.index_name, **templates)
 
     @classmethod
     def flush(cls):
