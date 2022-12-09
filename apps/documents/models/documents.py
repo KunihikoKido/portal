@@ -1,8 +1,14 @@
+import django.db.models.options as model_options
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from .classifications import ClassificationType
+
+model_options.DEFAULT_NAMES += (
+    'index_name',
+    'mapping_template'
+)
 
 
 class BaseDocument(models.Model):
@@ -71,3 +77,7 @@ class ProductDocument(BaseDocument):
         related_name='CityProductDocument',
         limit_choices_to={'classification_type': ClassificationType.CITY},
     )
+
+    class Meta:
+        index_name = 'portal.documents.product',
+        mapping_template = 'mappings/products.json'
