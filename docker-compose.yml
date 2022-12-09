@@ -14,4 +14,23 @@ services:
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - 8000:8000
+
+  elasticsearch:
+    build: ./compose/elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - 9200:9200
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.5.3
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    ports:
+       - 5601:5601
