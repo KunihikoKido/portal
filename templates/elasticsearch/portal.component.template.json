@@ -208,16 +208,6 @@
     "mappings": {
       "dynamic_templates": [
         {
-          "meta_field_template": {
-            "path_match": "meta.*",
-            "match_mapping_type": "string",
-            "mapping": {
-              "type": "keyword",
-              "ignore_above": 256
-            }
-          }
-        },
-        {
           "query_field_template": {
             "match_mapping_type": "object",
             "match": "query",
@@ -288,7 +278,7 @@
           }
         },
         {
-          "title_field_template": {
+          "short_term_field_template": {
             "match_mapping_type": "string",
             "match_pattern": "regex",
             "match": "titles?|.+_titles?|names?|.+_names?|.+_reading|katakana|.+_katakana|",
@@ -332,7 +322,7 @@
           }
         },
         {
-          "longtext_field_template": {
+          "long_term_field_template": {
             "match_mapping_type": "string",
             "match_pattern": "regex",
             "match": "description|.+_description|notes?|.+_notes?|memos?|.+_memos?|texts?|.+_texts?|messages?|.+_messages?|content",

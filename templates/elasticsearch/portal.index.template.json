@@ -8,5 +8,5 @@
       "number_of_replicas": 0
     }
   },
-  "composed_of": ["portal.component.analysis"]
+  "composed_of": ["portal.component.template"]
 }

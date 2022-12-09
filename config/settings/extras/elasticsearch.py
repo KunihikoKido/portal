@@ -10,10 +10,10 @@ ELASTICSEARCH = {
                 port=os.environ['ELASTICSEARCH_PORT'])
         ),
         'index_templates': (
-            'elasticsearch/portal.index.settings.json',
+            'elasticsearch/portal.index.template.json',
         ),
         'component_templates': (
-            'elasticsearch/portal.component.analysis.json',
+            'elasticsearch/portal.component.template.json',
         )
     }
 }
