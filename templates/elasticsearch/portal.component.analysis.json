@@ -1,0 +1,373 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "language_analyzer": {
+          "type": "custom",
+          "char_filter": [
+            "html_strip",
+            "unicode_normalizer",
+            "remove_symbols"
+          ],
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "url_stop",
+            "english_stop",
+            "english_stemmer",
+            "japanese_stop"
+          ]
+        },
+        "shingle_analyzer": {
+          "type": "custom",
+          "char_filter": [
+            "html_strip",
+            "unicode_normalizer",
+            "remove_symbols"
+          ],
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "url_stop",
+            "english_stop",
+            "japanese_stop",
+            "shingle",
+            "unique"
+          ]
+        },
+        "normalyze_analyzer": {
+          "type": "custom",
+          "char_filter": [
+            "html_strip",
+            "unicode_normalizer",
+            "remove_symbols"
+          ],
+          "tokenizer": "keyword",
+          "filter": [
+            "lowercase"
+          ]
+        },
+        "substring_analyzer": {
+          "type": "custom",
+          "char_filter": [
+            "html_strip",
+            "unicode_normalizer",
+            "remove_symbols"
+          ],
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "url_stop",
+            "english_stop",
+            "english_stemmer",
+            "cjk_bigram"
+          ]
+        },
+        "prefix_analyzer": {
+          "type": "custom",
+          "char_filter": [
+            "html_strip",
+            "unicode_normalizer",
+            "remove_symbols"
+          ],
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "url_stop",
+            "english_stop",
+            "english_stemmer",
+            "engram"
+          ]
+        },
+        "prefix_search_analyzer": {
+          "type": "custom",
+          "char_filter": [
+            "html_strip",
+            "unicode_normalizer",
+            "remove_symbols"
+          ],
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "url_stop",
+            "english_stop",
+            "english_stemmer",
+            "japanese_stop"
+          ]
+        },
+        "readingform_analyzer": {
+          "type": "custom",
+          "char_filter": [
+            "html_strip",
+            "unicode_normalizer",
+            "remove_symbols"
+          ],
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "url_stop",
+            "english_stop",
+            "english_stemmer",
+            "japanese_stop",
+            "latin",
+            "asciifolding",
+            "engram"
+          ]
+        },
+        "readingform_search_analyzer": {
+          "type": "custom",
+          "char_filter": [
+            "html_strip",
+            "unicode_normalizer",
+            "remove_symbols"
+          ],
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "url_stop",
+            "english_stop",
+            "english_stemmer",
+            "latin",
+            "asciifolding"
+          ]
+        },
+        "path_analyzer": {
+          "type": "custom",
+          "tokenizer": "path_hierarchy",
+          "filter": [
+            "lowercase"
+          ]
+        },
+        "path_search_analyzer": {
+          "type": "custom",
+          "tokenizer": "keyword",
+          "filter": [
+            "lowercase"
+          ]
+        }
+      },
+      "filter": {
+        "english_stop": {
+          "type": "stop",
+          "stopwords": "_english_"
+        },
+        "english_stemmer": {
+          "type": "stemmer",
+          "language": "english"
+        },
+        "english_possessive_stemmer": {
+          "type": "stemmer",
+          "language": "possessive_english"
+        },
+        "engram": {
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 36
+        },
+        "latin": {
+          "type": "icu_transform",
+          "id": "Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC"
+        },
+        "url_stop": {
+          "type": "stop",
+          "stopwords": ["http", "https", "ftp", "www"]
+        },
+        "shingle": {
+          "type": "shingle",
+          "min_shingle_size": 2,
+          "max_shingle_size": 2,
+          "output_unigrams":  true
+        },
+        "japanese_stop": {
+          "type": "ja_stop",
+          "stopwords": ["_japanese_"]
+        }
+      },
+      "char_filter": {
+        "unicode_normalizer": {
+          "type": "icu_normalizer",
+          "name": "nfkc",
+          "mode": "compose"
+        },
+        "remove_symbols": {
+          "pattern": "[!\"#$%&'()*+-.,\/:;<=>?@[\\\\]^_`{|}~]",
+          "replacement": " ",
+          "type": "pattern_replace"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "dynamic_templates": [
+      {
+        "meta_field_template": {
+          "path_match": "meta.*",
+          "match_mapping_type": "string",
+          "mapping": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      {
+        "query_field_template": {
+          "match_mapping_type": "object",
+          "match": "query",
+          "mapping": {
+            "type": "percolator"
+          }
+        }
+      },
+      {
+        "geo_shape_field_template": {
+          "match_mapping_type": "object",
+          "match": "location",
+          "mapping": {
+            "type": "geo_shape"
+          }
+        }
+      },
+      {
+        "id_field_template": {
+          "match_mapping_type": "string",
+          "match_pattern": "regex",
+          "match": "id|.+_id|codes?|.+_codes?|status|types?|languages?|country|countries|key?|.+_key?",
+          "mapping": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      {
+        "path_field_template": {
+          "match_mapping_type": "string",
+          "match_pattern": "regex",
+          "match": "urls?|.+_urls?|path?|.+_paths?",
+          "mapping": {
+            "type": "text",
+            "analyzer": "path_analyzer",
+            "search_analyzer": "path_search_analyzer",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      {
+        "tag_field_template": {
+          "match_mapping_type": "string",
+          "match_pattern": "regex",
+          "match": "tags?|.+_tags?|keywords?|.+_keywords?|slug",
+          "mapping": {
+            "type": "text",
+            "analyzer": "normalyze_analyzer",
+            "term_vector": "yes",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              },
+              "normalyze": {
+                "type": "text",
+                "analyzer": "normalyze_analyzer",
+                "fielddata": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "title_field_template": {
+          "match_mapping_type": "string",
+          "match_pattern": "regex",
+          "match": "titles?|.+_titles?|names?|.+_names?|.+_reading|katakana|.+_katakana|",
+          "mapping": {
+            "type": "text",
+            "analyzer": "language_analyzer",
+            "term_vector": "yes",
+            "fielddata": true,
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              },
+              "normalyze": {
+                "type": "text",
+                "analyzer": "normalyze_analyzer",
+                "fielddata": true
+              },
+              "shingle": {
+                "type": "text",
+                "analyzer": "shingle_analyzer",
+                "term_vector": "yes",
+                "fielddata": true
+              },
+              "substring": {
+                "type": "text",
+                "analyzer": "substring_analyzer"
+              },
+              "prefix": {
+                "type": "text",
+                "analyzer": "prefix_analyzer",
+                "search_analyzer": "prefix_search_analyzer"
+              },
+              "readingform": {
+                "type": "text",
+                "analyzer": "readingform_analyzer",
+                "search_analyzer": "readingform_search_analyzer"
+              }
+            }
+          }
+        }
+      },
+      {
+        "longtext_field_template": {
+          "match_mapping_type": "string",
+          "match_pattern": "regex",
+          "match": "description|.+_description|notes?|.+_notes?|memos?|.+_memos?|texts?|.+_texts?|messages?|.+_messages?|content",
+          "mapping": {
+            "type": "text",
+            "analyzer": "language_analyzer",
+            "term_vector": "yes",
+            "fielddata": true,
+            "fields": {
+              "shingle": {
+                "type": "text",
+                "analyzer": "shingle_analyzer",
+                "term_vector": "yes",
+                "fielddata": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "string_field_template": {
+          "match": "*",
+          "match_mapping_type": "string",
+          "mapping": {
+            "type": "text",
+            "analyzer": "language_analyzer",
+            "fielddata": true,
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "index_patterns": ["portal*"],
+  "priority": 0,
+  "version": 1,
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    }
+  },
+  "composed_of": ["portal.component.analysis"]
+}
