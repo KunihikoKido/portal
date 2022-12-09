@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -19,9 +18,6 @@ class Classification(models.Model):
         _('classification type'), max_length=20,
         choices=ClassificationType.choices,
         default=ClassificationType.CATEGORY)
-    language = models.CharField(
-        _('language'), max_length=10, choices=settings.LANGUAGES,
-        default=settings.LANGUAGE_CODE)
 
     synonyms = models.TextField(
         _('synonyms'), blank=True,

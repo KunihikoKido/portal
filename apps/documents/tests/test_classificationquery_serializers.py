@@ -1,6 +1,7 @@
-from apps.documents.models import Classification
-from apps.documents.serializers import ClassificationQuerySerializer
 from django.test import TestCase
+
+from ..models import Classification
+from ..serializers import ClassificationQuerySerializer
 
 
 class ClassificationQuerySerializerTest(TestCase):
@@ -11,7 +12,6 @@ class ClassificationQuerySerializerTest(TestCase):
             name='観光ツアー',
             order=2,
             classification_type='category',
-            language="ja",
             synonyms="世界遺産\n半日観光\n\n",
             antonyms="空港送迎"
         )
@@ -42,7 +42,6 @@ class ClassificationQuerySerializerTest(TestCase):
                     "name": "観光ツアー",
                     "order": 2,
                     "classification_type": "category",
-                    "language": "ja",
                     "key": "000002≠sightseeing≠観光ツアー"
                 }
             }

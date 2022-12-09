@@ -3,6 +3,5 @@
   "name": "{{ classification.name }}",
   "order": {{ classification.order }},
   "classification_type": "{{ classification.classification_type }}",
-  "language": "{{ classification.language }}",
   "key": "{{ classification.get_key }}"
 }

@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -11,9 +10,6 @@ class BaseDocument(models.Model):
     title = models.CharField(_('title'), blank=True, max_length=100)
     description = models.TextField(_('description'), blank=True)
     image_url = models.URLField(_('image url'), blank=True)
-    language = models.CharField(
-        _('language'), max_length=10, choices=settings.LANGUAGES,
-        default=settings.LANGUAGE_CODE)
     pub_date = models.DateTimeField(
         verbose_name=_("publication date"),
         default=timezone.now, db_index=True)

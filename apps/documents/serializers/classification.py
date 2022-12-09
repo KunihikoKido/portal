@@ -1,8 +1,9 @@
 import json
 
-from apps.documents.models import Classification
 from django.template.loader import render_to_string
 from rest_framework import serializers
+
+from ..models import Classification
 
 
 class ClassificationQuerySerializer(serializers.ModelSerializer):
