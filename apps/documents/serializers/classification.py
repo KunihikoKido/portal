@@ -6,7 +6,7 @@ from rest_framework import serializers
 from ..models import Classification
 
 
-class ClassificationQuerySerializer(serializers.ModelSerializer):
+class ClassificationPercolatorSerializer(serializers.ModelSerializer):
     id = serializers.SerializerMethodField()
     query = serializers.SerializerMethodField()
     classification_meta = serializers.SerializerMethodField()

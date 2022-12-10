@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from ..models import Classification
-from ..serializers import ClassificationQuerySerializer
+from ..serializers import ClassificationPercolatorSerializer
 
 
 class ClassificationQuerySerializerTest(TestCase):
@@ -18,7 +18,7 @@ class ClassificationQuerySerializerTest(TestCase):
         self.classification.save()
 
     def test_serializing(self):
-        serializer = ClassificationQuerySerializer(
+        serializer = ClassificationPercolatorSerializer(
             instance=self.classification)
         self.assertEqual(
             serializer.data,

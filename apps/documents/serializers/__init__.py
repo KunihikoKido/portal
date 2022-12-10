@@ -1,1 +1,1 @@
-from .classification import ClassificationQuerySerializer
+from .classification import ClassificationPercolatorSerializer

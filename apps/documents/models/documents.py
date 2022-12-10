@@ -45,12 +45,12 @@ class BaseDocument(models.Model):
 
     @classmethod
     def delete_index(cls):
-        return cls._meta.elasticsearch.delete(
+        return cls._meta.elasticsearch.indices.delete(
             index=cls._meta.index_name, ignore=[400, 404])
 
     @classmethod
     def exists_index(cls):
-        return cls._meta.elasticsearch.exists(
+        return cls._meta.elasticsearch.indices.exists(
             index=cls._meta.index_name)
 
     @classmethod
@@ -60,18 +60,33 @@ class BaseDocument(models.Model):
             index=cls._meta.index_name, **templates)
 
     @classmethod
-    def flush(cls):
+    def flush_index(cls):
         return cls._meta.elasticsearch.indices.flush(
             index=cls._meta.index_name)
 
     @classmethod
-    def refresh(cls):
+    def refresh_index(cls):
         return cls._meta.elasticsearch.indices.refresh(
             index=cls._meta.index_name)
 
     @classmethod
-    def search(cls, params={}):
-        return cls._meta.client.search(**params)
+    def search(cls, query=None, **kwargs):
+        return cls._meta.elasticsearch.search(query=query, **kwargs)
+
+    @classmethod
+    def index_document(cls, id, document, **kwargs):
+        return cls._meta.elasticsearch.index(
+            index=cls._meta.index_name, id=id, document=document, **kwargs)
+
+    @classmethod
+    def get_document(cls, id, **kwargs):
+        return cls._meta.elasticsearch.get(
+            index=cls._meta.index_name, id=id, **kwargs)
+
+    @classmethod
+    def delete_document(cls, id, **kwargs):
+        return cls._meta.elasticsearch.delete(
+            index=cls._meta.index_name, id=id, **kwargs)
 
 
 class ProductDocument(BaseDocument):
