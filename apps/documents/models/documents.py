@@ -92,7 +92,7 @@ class ProductDocument(BaseDocument):
         _('review count'), default=0, blank=False, null=False)
 
     category_classifications = models.ManyToManyField(
-        'documents.Classification',
+        'documents.CategoryClassification',
         verbose_name=_('category classifications'),
         blank=True,
         related_name='CategoryProductDocument',
@@ -100,7 +100,7 @@ class ProductDocument(BaseDocument):
     )
 
     region_classifications = models.ManyToManyField(
-        'documents.Classification',
+        'documents.RegionClassification',
         verbose_name=_('region classifications'),
         blank=True,
         related_name='RegionProductDocument',
@@ -108,7 +108,7 @@ class ProductDocument(BaseDocument):
     )
 
     country_classifications = models.ManyToManyField(
-        'documents.Classification',
+        'documents.CountryClassification',
         verbose_name=_('country classifications'),
         blank=True,
         related_name='CountryProductDocument',
@@ -116,11 +116,19 @@ class ProductDocument(BaseDocument):
     )
 
     city_classifications = models.ManyToManyField(
-        'documents.Classification',
+        'documents.CityClassification',
         verbose_name=_('city classifications'),
         blank=True,
         related_name='CityProductDocument',
         limit_choices_to={'classification_type': ClassificationType.CITY},
+    )
+
+    season_classifications = models.ManyToManyField(
+        'documents.SeasonClassification',
+        verbose_name=_('season classifications'),
+        blank=True,
+        related_name='SeasonProductDocument',
+        limit_choices_to={'classification_type': ClassificationType.SEASON},
     )
 
     class Meta:

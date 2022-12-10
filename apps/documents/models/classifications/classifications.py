@@ -7,6 +7,7 @@ class ClassificationType(models.TextChoices):
     REGION = 'region', _('Region')
     COUNTRY = 'country', _('Country')
     CITY = 'city', _('City')
+    SEASON = 'season', _('Season')
 
 
 class Classification(models.Model):
@@ -29,7 +30,7 @@ class Classification(models.Model):
                     'in the matching documents.'))
 
     class Meta:
-        ordering = ('order',)
+        ordering = ('order', 'slug', 'name')
 
     def __str__(self):
         return self.name
