@@ -30,7 +30,7 @@ class Classification(models.Model):
                     'in the matching documents.'))
 
     class Meta:
-        ordering = ('order', 'slug', 'name')
+        ordering = ('order',)
 
     def __str__(self):
         return self.name
