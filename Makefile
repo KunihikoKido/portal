@@ -91,3 +91,9 @@ django.createsuperuser: ## Run createsuperuser commands for django
 
 django.loadusers: ## Load initial data
 	@docker-compose run --rm web python manage.py loaddata fixtures/users.json
+
+django.makemessages: ## Make messages
+	@docker-compose run --rm web python manage.py makemessages -l ja
+
+django.compilemessages: ## Compile messages
+	@docker-compose run --rm web python manage.py compilemessages

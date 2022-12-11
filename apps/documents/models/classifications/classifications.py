@@ -30,6 +30,8 @@ class Classification(models.Model):
                     'in the matching documents.'))
 
     class Meta:
+        verbose_name = _('Classification')
+        verbose_name_plural = _('Classifications')
         ordering = ('order',)
 
     def __str__(self):

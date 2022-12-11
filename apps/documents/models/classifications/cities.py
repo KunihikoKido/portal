@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from .classifications import Classification, ClassificationType
 
@@ -17,6 +18,8 @@ class CityClassification(Classification):
     objects = CityClassificationManager()
 
     class Meta:
+        verbose_name = _('City classification')
+        verbose_name_plural = _('City classifications')
         proxy = True
 
     def save(self, *args, **kwargs):

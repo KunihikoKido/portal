@@ -9,25 +9,22 @@ from django.utils.translation import gettext_lazy as _
 
 from .classifications import ClassificationType
 
-model_options.DEFAULT_NAMES += (
-    'index_name',
-    'mapping_template',
-    'elasticsearch'
-)
+model_options.DEFAULT_NAMES += ("index_name",
+                                "mapping_template", "elasticsearch")
 
-ELASTICSEARCH = settings.ELASTICSEARCH['default']
+ELASTICSEARCH = settings.ELASTICSEARCH["default"]
 
 
 class BaseDocument(models.Model):
-    url = models.URLField(_('url'), unique=True)
-    title = models.CharField(_('title'), blank=True, max_length=100)
-    description = models.TextField(_('description'), blank=True)
-    image_url = models.URLField(_('image url'), blank=True)
+    url = models.URLField(_("url"), unique=True)
+    title = models.CharField(_("title"), blank=True, max_length=100)
+    description = models.TextField(_("description"), blank=True)
+    image_url = models.URLField(_("image url"), blank=True)
     pub_date = models.DateTimeField(
-        verbose_name=_("publication date"),
-        default=timezone.now, db_index=True)
+        verbose_name=_("publication date"), default=timezone.now, db_index=True
+    )
 
-    is_active = models.BooleanField(_('active'), default=False)
+    is_active = models.BooleanField(_("active"), default=False)
 
     class Meta:
         abstract = True
@@ -41,12 +38,14 @@ class BaseDocument(models.Model):
     @classmethod
     def create_index(cls):
         return cls._meta.elasticsearch.indices.create(
-            index=cls._meta.index_name, ignore=[400, 404])
+            index=cls._meta.index_name, ignore=[400, 404]
+        )
 
     @classmethod
     def delete_index(cls):
         return cls._meta.elasticsearch.indices.delete(
-            index=cls._meta.index_name, ignore=[400, 404])
+            index=cls._meta.index_name, ignore=[400, 404]
+        )
 
     @classmethod
     def exists_index(cls):
@@ -57,7 +56,8 @@ class BaseDocument(models.Model):
     def put_mapping(cls):
         templates = json.loads(render_to_string(cls._meta.mapping_template))
         return cls._meta.elasticsearch.indices.put_mapping(
-            index=cls._meta.index_name, **templates)
+            index=cls._meta.index_name, **templates
+        )
 
     @classmethod
     def flush_index(cls):
@@ -72,12 +72,14 @@ class BaseDocument(models.Model):
     @classmethod
     def search(cls, query=None, **kwargs):
         return cls._meta.elasticsearch.search(
-            index=cls._meta.index_name, query=query, **kwargs)
+            index=cls._meta.index_name, query=query, **kwargs
+        )
 
     @classmethod
     def index_document(cls, id, document, **kwargs):
         return cls._meta.elasticsearch.index(
-            index=cls._meta.index_name, id=id, document=document, **kwargs)
+            index=cls._meta.index_name, id=id, document=document, **kwargs
+        )
 
     @classmethod
     def get_document(cls, id, **kwargs):
@@ -87,67 +89,69 @@ class BaseDocument(models.Model):
     @classmethod
     def delete_document(cls, id, **kwargs):
         return cls._meta.elasticsearch.delete(
-            index=cls._meta.index_name, id=id, **kwargs)
+            index=cls._meta.index_name, id=id, **kwargs
+        )
 
 
 class ProductDocument(BaseDocument):
-    product_id = models.CharField(_('product id'), blank=True, max_length=100)
-    brand_name = models.CharField(_('brand name'), blank=True, max_length=100)
+    product_id = models.CharField(_("product id"), blank=True, max_length=100)
+    brand_name = models.CharField(_("brand name"), blank=True, max_length=100)
 
-    offer_count = models.IntegerField(_('offer count'), blank=True, null=True)
-    low_price = models.IntegerField(
-        _('low price'), blank=True, null=True)
-    high_price = models.IntegerField(
-        _('high price'), blank=True, null=True)
+    offer_count = models.IntegerField(_("offer count"), blank=True, null=True)
+    low_price = models.IntegerField(_("low price"), blank=True, null=True)
+    high_price = models.IntegerField(_("high price"), blank=True, null=True)
     price_currency = models.CharField(
-        _('price currency'), blank=True, max_length=100)
+        _("price currency"), blank=True, max_length=100)
 
     rating = models.FloatField(
-        _('review rating'), default=0.0, blank=False, null=False)
+        _("review rating"), default=0.0, blank=False, null=False)
     review_count = models.PositiveIntegerField(
-        _('review count'), default=0, blank=False, null=False)
+        _("review count"), default=0, blank=False, null=False
+    )
 
     category_classifications = models.ManyToManyField(
-        'documents.CategoryClassification',
-        verbose_name=_('category classifications'),
+        "documents.CategoryClassification",
+        verbose_name=_("category classifications"),
         blank=True,
-        related_name='CategoryProductDocument',
-        limit_choices_to={'classification_type': ClassificationType.CATEGORY},
+        related_name="CategoryProductDocument",
+        limit_choices_to={"classification_type": ClassificationType.CATEGORY},
     )
 
     region_classifications = models.ManyToManyField(
-        'documents.RegionClassification',
-        verbose_name=_('region classifications'),
+        "documents.RegionClassification",
+        verbose_name=_("region classifications"),
         blank=True,
-        related_name='RegionProductDocument',
-        limit_choices_to={'classification_type': ClassificationType.REGION},
+        related_name="RegionProductDocument",
+        limit_choices_to={"classification_type": ClassificationType.REGION},
     )
 
     country_classifications = models.ManyToManyField(
-        'documents.CountryClassification',
-        verbose_name=_('country classifications'),
+        "documents.CountryClassification",
+        verbose_name=_("country classifications"),
         blank=True,
-        related_name='CountryProductDocument',
-        limit_choices_to={'classification_type': ClassificationType.COUNTRY},
+        related_name="CountryProductDocument",
+        limit_choices_to={"classification_type": ClassificationType.COUNTRY},
     )
 
     city_classifications = models.ManyToManyField(
-        'documents.CityClassification',
-        verbose_name=_('city classifications'),
+        "documents.CityClassification",
+        verbose_name=_("city classifications"),
         blank=True,
-        related_name='CityProductDocument',
-        limit_choices_to={'classification_type': ClassificationType.CITY},
+        related_name="CityProductDocument",
+        limit_choices_to={"classification_type": ClassificationType.CITY},
     )
 
     season_classifications = models.ManyToManyField(
-        'documents.SeasonClassification',
-        verbose_name=_('season classifications'),
+        "documents.SeasonClassification",
+        verbose_name=_("season classifications"),
         blank=True,
-        related_name='SeasonProductDocument',
-        limit_choices_to={'classification_type': ClassificationType.SEASON},
+        related_name="SeasonProductDocument",
+        limit_choices_to={"classification_type": ClassificationType.SEASON},
     )
 
     class Meta:
-        index_name = 'portal.documents.product'
-        mapping_template = 'mappings/portal.documents.product.json'
-        elasticsearch = ELASTICSEARCH['client']
+        verbose_name = _('Product document')
+        verbose_name_plural = _('Product documents')
+        index_name = "portal.documents.product"
+        mapping_template = "mappings/portal.documents.product.json"
+        elasticsearch = ELASTICSEARCH["client"]

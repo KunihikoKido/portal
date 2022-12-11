@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from .classifications import Classification, ClassificationType
 
@@ -13,6 +14,8 @@ class SeasonClassification(Classification):
     objects = SeasonClassificationManager()
 
     class Meta:
+        verbose_name = _('Season classification')
+        verbose_name_plural = _('Season classifications')
         proxy = True
 
     def save(self, *args, **kwargs):
