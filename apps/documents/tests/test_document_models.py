@@ -1,15 +1,8 @@
-from django.test import TestCase
-
 from ..models import ProductDocument
+from ..test import TestCase
 
 
 class DocumentModelTest(TestCase):
-    def setUp(self):
-        ProductDocument.create_index()
-
-    def tearDown(self):
-        ProductDocument.delete_index()
-
     def test_create_index(self):
         ProductDocument.delete_index()
         response = ProductDocument.create_index()

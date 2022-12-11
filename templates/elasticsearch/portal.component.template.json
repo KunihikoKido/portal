@@ -206,6 +206,12 @@
       }
     },
     "mappings": {
+      "properties": {
+        "_all": {
+          "type": "text",
+          "analyzer": "language_analyzer"
+        }
+      },
       "dynamic_templates": [
         {
           "query_field_template": {
@@ -285,6 +291,7 @@
             "mapping": {
               "type": "text",
               "analyzer": "language_analyzer",
+              "copy_to": "_all",
               "term_vector": "yes",
               "fielddata": true,
               "fields": {
@@ -329,6 +336,7 @@
             "mapping": {
               "type": "text",
               "analyzer": "language_analyzer",
+              "copy_to": "_all",
               "term_vector": "yes",
               "fielddata": true,
               "fields": {
@@ -349,6 +357,7 @@
             "mapping": {
               "type": "text",
               "analyzer": "language_analyzer",
+              "copy_to": "_all",
               "fielddata": true,
               "fields": {
                 "keyword": {

@@ -9,11 +9,11 @@ from ..models import Classification
 class ClassificationPercolatorSerializer(serializers.ModelSerializer):
     id = serializers.SerializerMethodField()
     query = serializers.SerializerMethodField()
-    classification_meta = serializers.SerializerMethodField()
+    _meta = serializers.SerializerMethodField()
 
     class Meta:
         model = Classification
-        fields = ['id', 'query', 'classification_meta']
+        fields = ['id', 'query', '_meta']
 
     def get_id(self, obj):
         return 'classification-{}'.format(obj.id)
@@ -24,7 +24,7 @@ class ClassificationPercolatorSerializer(serializers.ModelSerializer):
             {'classification': obj})
         return json.loads(rendered)
 
-    def get_classification_meta(self, obj):
+    def get__meta(self, obj):
         rendered = render_to_string(
             'percolators/classification_meta.json',
             {'classification': obj})

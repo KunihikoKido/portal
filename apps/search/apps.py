@@ -18,7 +18,7 @@ def get_templates(name=None):
 
 class SearchConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'search'
+    name = 'apps.search'
 
     def ready(self):
         client = ELASTICSEARCH['client']

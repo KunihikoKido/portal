@@ -71,7 +71,8 @@ class BaseDocument(models.Model):
 
     @classmethod
     def search(cls, query=None, **kwargs):
-        return cls._meta.elasticsearch.search(query=query, **kwargs)
+        return cls._meta.elasticsearch.search(
+            index=cls._meta.index_name, query=query, **kwargs)
 
     @classmethod
     def index_document(cls, id, document, **kwargs):
