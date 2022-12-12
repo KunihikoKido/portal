@@ -9,11 +9,11 @@ from django.utils.translation import gettext_lazy as _
 
 from .classifications import ClassificationType
 
-model_options.DEFAULT_NAMES += [
+model_options.DEFAULT_NAMES += (
     "index_name",
     "mapping_template",
     "elasticsearch",
-]
+)
 
 ELASTICSEARCH = settings.ELASTICSEARCH["default"]
 
