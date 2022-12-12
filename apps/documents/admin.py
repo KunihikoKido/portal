@@ -9,7 +9,7 @@ from .models import (
     RegionClassification,
     SeasonClassification,
 )
-from .serializers import ClassificationPercolatorSerializer, ProductDocumentSerializer
+from .serializers import ClassificationPercolatorSerializer
 
 
 @admin.register(ProductDocument)
