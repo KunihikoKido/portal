@@ -14,13 +14,33 @@ from ..serializers import ClassificationPercolatorSerializer
 
 class BaseClassificationAdmin(admin.ModelAdmin):
     list_display = (
-        "order",
         "slug",
         "name",
     )
-    fields = ("slug", "name", "order", "synonyms", "antonyms")
     actions = ["index_classifications"]
     search_fields = ("slug", "name")
+
+    fieldsets = (
+        (
+            None,
+            {
+                "fields": (
+                    "slug",
+                    "name",
+                    "order",
+                ),
+            },
+        ),
+        (
+            _("Query options"),
+            {
+                "fields": (
+                    "synonyms",
+                    "antonyms",
+                ),
+            },
+        ),
+    )
 
     @admin.action(description=_("Index classification rules."))
     def index_classifications(self, request, queryset):

@@ -31,7 +31,9 @@ class BaseDocument(models.Model):
     description = models.TextField(_("description"), blank=True)
     image_url = models.URLField(_("image url"), blank=True)
     pub_date = models.DateTimeField(
-        verbose_name=_("publication date"), default=timezone.now, db_index=True
+        verbose_name=_("publication date"),
+        default=timezone.now,
+        db_index=True,
     )
 
     is_active = models.BooleanField(_("active"), default=False)

@@ -8,7 +8,7 @@ from ..serializers import ProductDocumentSerializer
 @admin.register(ProductDocument)
 class ProductDocumentAdmin(admin.ModelAdmin):
     list_display = ("title",)
-    search_fields = ("category_classifications",)
+    search_fields = ("title", "product_id")
     autocomplete_fields = (
         "category_classifications",
         "region_classifications",
@@ -21,6 +21,58 @@ class ProductDocumentAdmin(admin.ModelAdmin):
         "classify_documents",
         "clear_classifications",
     ]
+    fieldsets = (
+        (
+            None,
+            {
+                "fields": (
+                    "url",
+                    "title",
+                    "description",
+                    "image_url",
+                    "pub_date",
+                    "is_active",
+                ),
+            },
+        ),
+        (
+            _("Product options"),
+            {
+                "fields": (
+                    "product_id",
+                    "brand_name",
+                    "low_price",
+                    "high_price",
+                    "price_currency",
+                )
+            },
+        ),
+        (
+            _("Review options"),
+            {
+                "fields": (
+                    "rating",
+                    "review_count",
+                )
+            },
+        ),
+        (
+            _("Offer options"),
+            {"fields": ("offer_count",)},
+        ),
+        (
+            _("Classification options"),
+            {
+                "fields": (
+                    "category_classifications",
+                    "region_classifications",
+                    "country_classifications",
+                    "city_classifications",
+                    "season_classifications",
+                )
+            },
+        ),
+    )
 
     @admin.action(description=_("Classify documents"))
     def classify_documents(self, request, queryset):
