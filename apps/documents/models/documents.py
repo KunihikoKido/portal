@@ -113,13 +113,20 @@ class ProductDocument(BaseDocument):
     product_id = models.CharField(_("product id"), blank=True, max_length=100)
     brand_name = models.CharField(_("brand name"), blank=True, max_length=100)
 
-    offer_count = models.IntegerField(_("offer count"), blank=True, null=True)
-    low_price = models.IntegerField(_("low price"), blank=True, null=True)
-    high_price = models.IntegerField(_("high price"), blank=True, null=True)
+    offer_count = models.IntegerField(
+        _("offer count"), blank=True, null=True, default=0
+    )
+    low_price = models.IntegerField(
+        _("low price"), blank=True, null=True, default=0
+    )
+    high_price = models.IntegerField(
+        _("high price"), blank=True, null=True, default=0
+    )
     price_currency = models.CharField(
         _("price currency"),
         blank=True,
         max_length=100,
+        default="JPY",
     )
 
     rating = models.FloatField(

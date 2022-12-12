@@ -1,7 +1,7 @@
 from django.contrib import admin, messages
 from django.utils.translation import gettext_lazy as _
 
-from .models import (
+from ..models import (
     CategoryClassification,
     CityClassification,
     CountryClassification,
@@ -9,41 +9,7 @@ from .models import (
     RegionClassification,
     SeasonClassification,
 )
-from .serializers import ClassificationPercolatorSerializer
-
-
-@admin.register(ProductDocument)
-class ProductDocumentAdmin(admin.ModelAdmin):
-    list_display = ("title",)
-    search_fields = ("category_classifications",)
-    filter_horizontal = (
-        "category_classifications",
-        "region_classifications",
-        "country_classifications",
-        "city_classifications",
-        "season_classifications",
-    )
-    actions = ["classify_documents", "clear_classifications"]
-
-    @admin.action(description=_("Classify documents"))
-    def classify_documents(self, request, queryset):
-        for obj in queryset:
-            obj.classify()
-        self.message_user(
-            request,
-            _("Classified products."),
-            messages.SUCCESS,
-        )
-
-    @admin.action(description=_("Clear classifications"))
-    def clear_classifications(self, request, queryset):
-        for obj in queryset:
-            obj.clear_classifications()
-        self.message_user(
-            request,
-            _("Cleared classifications."),
-            messages.SUCCESS,
-        )
+from ..serializers import ClassificationPercolatorSerializer
 
 
 class BaseClassificationAdmin(admin.ModelAdmin):
@@ -54,6 +20,7 @@ class BaseClassificationAdmin(admin.ModelAdmin):
     )
     fields = ("slug", "name", "order", "synonyms", "antonyms")
     actions = ["index_classifications"]
+    search_fields = ("slug", "name")
 
     @admin.action(description=_("Index classification rules."))
     def index_classifications(self, request, queryset):

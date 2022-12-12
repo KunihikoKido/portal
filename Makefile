@@ -44,7 +44,7 @@ clean: ## Clean docker containers and clean this project
 	@find . -name db.sqlite3 | xargs rm -rf
 
 start: ## Start docker containers.
-start: build django.migrate django.loadusers
+start: build django.migrate django.loadusers django.compilemessages
 	@docker-compose up -d
 
 test: ## Run tests

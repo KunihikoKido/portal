@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-12 19:03+0900\n"
+"POT-Creation-Date: 2022-12-13 00:00+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/documents/admin.py:28
-msgid "Classify documents"
-msgstr "商品を分類する"
-
-#: apps/documents/admin.py:34
-msgid "Classified products."
-msgstr "商品を分類しました。"
-
-#: apps/documents/admin.py:38
-msgid "Clear classifications"
-msgstr "分類をクリアする"
-
-#: apps/documents/admin.py:44
-msgid "Cleared classifications."
-msgstr "分類をクリアしました。"
-
-#: apps/documents/admin.py:58
-#, fuzzy
-#| msgid "Index classification rules"
+#: apps/documents/admin/classifications.py:25
 msgid "Index classification rules."
 msgstr "分類ルールをインデックスする"
 
-#: apps/documents/admin.py:68
+#: apps/documents/admin/classifications.py:35
 msgid "Classification rules indexed."
 msgstr "分類ルールをインデックスしました。"
+
+#: apps/documents/admin/documents.py:25
+msgid "Classify documents"
+msgstr "商品ドキュメントを分類する"
+
+#: apps/documents/admin/documents.py:31
+msgid "Classified products."
+msgstr "商品ドキュメントを分類しました。"
+
+#: apps/documents/admin/documents.py:35
+msgid "Clear classifications"
+msgstr "分類をクリアする"
+
+#: apps/documents/admin/documents.py:41
+msgid "Cleared classifications."
+msgstr "分類をクリアしました。"
+
+#: apps/documents/admin/documents.py:45
+msgid "Index product documents."
+msgstr "商品ドキュメントをインデックスする"
+
+#: apps/documents/admin/documents.py:56
+msgid "Product documents indexed."
+msgstr "商品ドキュメントをインデックスしました。"
 
 #: apps/documents/models/classifications/categories.py:20
 msgid "Category classification"
@@ -178,54 +184,54 @@ msgstr "商品 ID"
 msgid "brand name"
 msgstr "ブランド名"
 
-#: apps/documents/models/documents.py:116
+#: apps/documents/models/documents.py:117
 msgid "offer count"
 msgstr "購入数"
 
-#: apps/documents/models/documents.py:117
+#: apps/documents/models/documents.py:120
 msgid "low price"
 msgstr "最低価格"
 
-#: apps/documents/models/documents.py:118
+#: apps/documents/models/documents.py:123
 msgid "high price"
 msgstr "最高価格"
 
-#: apps/documents/models/documents.py:120
+#: apps/documents/models/documents.py:126
 msgid "price currency"
 msgstr "通貨"
 
-#: apps/documents/models/documents.py:126
+#: apps/documents/models/documents.py:133
 msgid "review rating"
 msgstr "レビュー評価"
 
-#: apps/documents/models/documents.py:132
+#: apps/documents/models/documents.py:139
 msgid "review count"
 msgstr "レビュー数"
 
-#: apps/documents/models/documents.py:137
+#: apps/documents/models/documents.py:144
 msgid "category classifications"
 msgstr "カテゴリ分類"
 
-#: apps/documents/models/documents.py:145
+#: apps/documents/models/documents.py:152
 msgid "region classifications"
 msgstr "リージョン分類"
 
-#: apps/documents/models/documents.py:153
+#: apps/documents/models/documents.py:160
 msgid "country classifications"
 msgstr "国分類"
 
-#: apps/documents/models/documents.py:161
+#: apps/documents/models/documents.py:168
 msgid "city classifications"
 msgstr "地域分類"
 
-#: apps/documents/models/documents.py:169
+#: apps/documents/models/documents.py:176
 msgid "season classifications"
 msgstr "シーズン分類"
 
-#: apps/documents/models/documents.py:176
+#: apps/documents/models/documents.py:183
 msgid "Product document"
 msgstr "商品ドキュメント"
 
-#: apps/documents/models/documents.py:177
+#: apps/documents/models/documents.py:184
 msgid "Product documents"
 msgstr "商品ドキュメント"
