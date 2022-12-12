@@ -6,16 +6,21 @@ from .classifications import Classification, ClassificationType
 
 class SeasonClassificationManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(
-            classification_type=ClassificationType.SEASON)
+        return (
+            super()
+            .get_queryset()
+            .filter(
+                classification_type=ClassificationType.SEASON,
+            )
+        )
 
 
 class SeasonClassification(Classification):
     objects = SeasonClassificationManager()
 
     class Meta:
-        verbose_name = _('Season classification')
-        verbose_name_plural = _('Season classifications')
+        verbose_name = _("Season classification")
+        verbose_name_plural = _("Season classifications")
         proxy = True
 
     def save(self, *args, **kwargs):

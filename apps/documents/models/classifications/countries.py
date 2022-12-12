@@ -6,16 +6,21 @@ from .classifications import Classification, ClassificationType
 
 class CountryClassificationManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(
-            classification_type=ClassificationType.COUNTRY)
+        return (
+            super()
+            .get_queryset()
+            .filter(
+                classification_type=ClassificationType.COUNTRY,
+            )
+        )
 
 
 class CountryClassification(Classification):
     objects = CountryClassificationManager()
 
     class Meta:
-        verbose_name = _('Counrty classification')
-        verbose_name_plural = _('Country classifications')
+        verbose_name = _("Counrty classification")
+        verbose_name_plural = _("Country classifications")
         proxy = True
 
     def save(self, *args, **kwargs):

@@ -1,9 +1,14 @@
 from django.contrib import admin, messages
 from django.utils.translation import gettext_lazy as _
 
-from .models import (CategoryClassification, CityClassification,
-                     CountryClassification, ProductDocument,
-                     RegionClassification, SeasonClassification)
+from .models import (
+    CategoryClassification,
+    CityClassification,
+    CountryClassification,
+    ProductDocument,
+    RegionClassification,
+    SeasonClassification,
+)
 from .serializers import ClassificationPercolatorSerializer
 
 
@@ -33,9 +38,14 @@ class BaseClassificationAdmin(admin.ModelAdmin):
         for obj in queryset:
             percolator = ClassificationPercolatorSerializer(instance=obj).data
             ProductDocument.index_document(
-                id=percolator["id"], document=percolator)
-        self.message_user(request, _(
-            "Classification rules indexed."), messages.SUCCESS)
+                id=percolator["id"],
+                document=percolator,
+            )
+        self.message_user(
+            request,
+            _("Classification rules indexed."),
+            messages.SUCCESS,
+        )
 
 
 @admin.register(CategoryClassification)

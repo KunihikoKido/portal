@@ -9,8 +9,11 @@ from django.utils.translation import gettext_lazy as _
 
 from .classifications import ClassificationType
 
-model_options.DEFAULT_NAMES += ("index_name",
-                                "mapping_template", "elasticsearch")
+model_options.DEFAULT_NAMES += [
+    "index_name",
+    "mapping_template",
+    "elasticsearch",
+]
 
 ELASTICSEARCH = settings.ELASTICSEARCH["default"]
 
@@ -50,7 +53,8 @@ class BaseDocument(models.Model):
     @classmethod
     def exists_index(cls):
         return cls._meta.elasticsearch.indices.exists(
-            index=cls._meta.index_name)
+            index=cls._meta.index_name,
+        )
 
     @classmethod
     def put_mapping(cls):
@@ -62,12 +66,14 @@ class BaseDocument(models.Model):
     @classmethod
     def flush_index(cls):
         return cls._meta.elasticsearch.indices.flush(
-            index=cls._meta.index_name)
+            index=cls._meta.index_name,
+        )
 
     @classmethod
     def refresh_index(cls):
         return cls._meta.elasticsearch.indices.refresh(
-            index=cls._meta.index_name)
+            index=cls._meta.index_name,
+        )
 
     @classmethod
     def search(cls, query=None, **kwargs):
@@ -84,7 +90,10 @@ class BaseDocument(models.Model):
     @classmethod
     def get_document(cls, id, **kwargs):
         return cls._meta.elasticsearch.get(
-            index=cls._meta.index_name, id=id, **kwargs)
+            index=cls._meta.index_name,
+            id=id,
+            **kwargs,
+        )
 
     @classmethod
     def delete_document(cls, id, **kwargs):
@@ -101,10 +110,17 @@ class ProductDocument(BaseDocument):
     low_price = models.IntegerField(_("low price"), blank=True, null=True)
     high_price = models.IntegerField(_("high price"), blank=True, null=True)
     price_currency = models.CharField(
-        _("price currency"), blank=True, max_length=100)
+        _("price currency"),
+        blank=True,
+        max_length=100,
+    )
 
     rating = models.FloatField(
-        _("review rating"), default=0.0, blank=False, null=False)
+        _("review rating"),
+        default=0.0,
+        blank=False,
+        null=False,
+    )
     review_count = models.PositiveIntegerField(
         _("review count"), default=0, blank=False, null=False
     )
@@ -150,8 +166,8 @@ class ProductDocument(BaseDocument):
     )
 
     class Meta:
-        verbose_name = _('Product document')
-        verbose_name_plural = _('Product documents')
+        verbose_name = _("Product document")
+        verbose_name_plural = _("Product documents")
         index_name = "portal.documents.product"
         mapping_template = "mappings/portal.documents.product.json"
         elasticsearch = ELASTICSEARCH["client"]

@@ -5,7 +5,7 @@ from django.apps import AppConfig
 from django.conf import settings
 from django.template.loader import render_to_string
 
-ELASTICSEARCH = settings.ELASTICSEARCH['default']
+ELASTICSEARCH = settings.ELASTICSEARCH["default"]
 
 
 def get_templates(name=None):
@@ -17,13 +17,13 @@ def get_templates(name=None):
 
 
 class SearchConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.search'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.search"
 
     def ready(self):
-        client = ELASTICSEARCH['client']
-        for name, templates in get_templates(name='component_templates'):
+        client = ELASTICSEARCH["client"]
+        for name, templates in get_templates(name="component_templates"):
             client.cluster.put_component_template(name=name, **templates)
 
-        for name, templates in get_templates(name='index_templates'):
+        for name, templates in get_templates(name="index_templates"):
             client.indices.put_index_template(name=name, **templates)

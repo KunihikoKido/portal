@@ -6,11 +6,16 @@ from .classifications import Classification, ClassificationType
 
 class CityClassificationManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(
-            classification_type=ClassificationType.CITY)
+        return (
+            super()
+            .get_queryset()
+            .filter(
+                classification_type=ClassificationType.CITY,
+            )
+        )
 
     def create(self, **kwargs):
-        kwargs.update({'classification_type': ClassificationType.CITY})
+        kwargs.update({"classification_type": ClassificationType.CITY})
         return super().create(**kwargs)
 
 
@@ -18,8 +23,8 @@ class CityClassification(Classification):
     objects = CityClassificationManager()
 
     class Meta:
-        verbose_name = _('City classification')
-        verbose_name_plural = _('City classifications')
+        verbose_name = _("City classification")
+        verbose_name_plural = _("City classifications")
         proxy = True
 
     def save(self, *args, **kwargs):

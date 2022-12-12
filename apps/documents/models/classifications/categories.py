@@ -6,16 +6,19 @@ from .classifications import Classification, ClassificationType
 
 class CategoryClassificationManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(
-            classification_type=ClassificationType.CATEGORY)
+        return (
+            super()
+            .get_queryset()
+            .filter(classification_type=ClassificationType.CATEGORY)
+        )
 
 
 class CategoryClassification(Classification):
     objects = CategoryClassificationManager()
 
     class Meta:
-        verbose_name = _('Category classification')
-        verbose_name_plural = _('Category classifications')
+        verbose_name = _("Category classification")
+        verbose_name_plural = _("Category classifications")
         proxy = True
 
     def save(self, *args, **kwargs):

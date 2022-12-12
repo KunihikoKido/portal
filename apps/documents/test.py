@@ -4,7 +4,6 @@ from .models import ProductDocument
 
 
 class TestCase(BaseTestCase):
-
     def setUp(self):
         exists = ProductDocument.exists_index()
         if not exists:
