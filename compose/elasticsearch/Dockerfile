@@ -1,3 +1,4 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:8.5.3
+ARG STACK_VERSION
+FROM docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
 RUN elasticsearch-plugin install analysis-icu
 RUN elasticsearch-plugin install analysis-kuromoji
