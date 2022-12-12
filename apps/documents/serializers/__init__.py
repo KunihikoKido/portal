@@ -1,2 +1,5 @@
-from .classification import ClassificationPercolatorSerializer
+from .classification import (
+    ClassificationPercolatorSerializer,
+    ClassificationSerializer,
+)
 from .documents import ProductDocumentSerializer

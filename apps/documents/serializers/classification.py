@@ -6,6 +6,23 @@ from rest_framework import serializers
 from ..models import Classification
 
 
+class ClassificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Classification
+        fields = "__all__"
+
+
+class ClassificationIndexSerializer(serializers.ModelSerializer):
+    key = serializers.SerializerMethodField()
+
+    def get_key(self, obj):
+        return obj.get_key()
+
+    class Meta:
+        model = Classification
+        fields = ("slug", "name", "order", "key")
+
+
 class ClassificationPercolatorSerializer(serializers.ModelSerializer):
     id = serializers.SerializerMethodField()
     query = serializers.SerializerMethodField()
