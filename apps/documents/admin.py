@@ -25,7 +25,7 @@ class ProductDocumentAdmin(admin.ModelAdmin):
     )
     actions = ["classify_documents", "clear_classifications"]
 
-    @admin.action(description="Classify documents")
+    @admin.action(description=_("Classify documents"))
     def classify_documents(self, request, queryset):
         for obj in queryset:
             obj.classify()
@@ -35,13 +35,13 @@ class ProductDocumentAdmin(admin.ModelAdmin):
             messages.SUCCESS,
         )
 
-    @admin.action(description="Clear classifications")
+    @admin.action(description=_("Clear classifications"))
     def clear_classifications(self, request, queryset):
         for obj in queryset:
             obj.clear_classifications()
         self.message_user(
             request,
-            _("Clear classifications."),
+            _("Cleared classifications."),
             messages.SUCCESS,
         )
 
@@ -55,7 +55,7 @@ class BaseClassificationAdmin(admin.ModelAdmin):
     fields = ("slug", "name", "order", "synonyms", "antonyms")
     actions = ["index_classifications"]
 
-    @admin.action(description="Index classification rules")
+    @admin.action(description=_("Index classification rules."))
     def index_classifications(self, request, queryset):
         for obj in queryset:
             percolator = ClassificationPercolatorSerializer(instance=obj).data
@@ -67,6 +67,14 @@ class BaseClassificationAdmin(admin.ModelAdmin):
             request,
             _("Classification rules indexed."),
             messages.SUCCESS,
+        )
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        percolator = ClassificationPercolatorSerializer(instance=obj).data
+        ProductDocument.index_document(
+            id=percolator["id"],
+            document=percolator,
         )
 
 
@@ -91,5 +99,5 @@ class CityClassificationAdmin(BaseClassificationAdmin):
 
 
 @admin.register(SeasonClassification)
-class SeasonClassificationAdmin(admin.ModelAdmin):
+class SeasonClassificationAdmin(BaseClassificationAdmin):
     pass
