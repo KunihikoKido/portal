@@ -7,6 +7,13 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from ..models import (
+    CategoryClassification,
+    CityClassification,
+    CountryClassification,
+    RegionClassification,
+    SeasonClassification,
+)
 from .classifications import ClassificationType
 
 model_options.DEFAULT_NAMES += (
@@ -171,3 +178,57 @@ class ProductDocument(BaseDocument):
         index_name = "portal.documents.product"
         mapping_template = "mappings/portal.documents.product.json"
         elasticsearch = ELASTICSEARCH["client"]
+
+    def clear_classifications(self):
+        self.category_classifications.clear()
+        self.region_classifications.clear()
+        self.country_classifications.clear()
+        self.city_classifications.clear()
+        self.season_classifications.clear()
+
+    def classify(self):
+        from ..serializers import ProductDocumentSerializer
+
+        document = ProductDocumentSerializer(instance=self).data
+        response = self._meta.model.search(
+            query={
+                "percolate": {
+                    "field": "query",
+                    "document": document,
+                },
+            }
+        )
+        self.category_classifications.clear()
+        for item in response["hits"]["hits"]:
+            source = item["_source"]["_meta"]["classification"]
+            classification_type = source["classification_type"]
+            slug = source["slug"]
+            if classification_type == ClassificationType.CATEGORY:
+                classification = CategoryClassification.objects.get(
+                    slug=slug,
+                )
+                self.category_classifications.add(classification)
+
+            elif classification_type == ClassificationType.REGION:
+                classification = RegionClassification.objects.get(
+                    slug=slug,
+                )
+                self.region_classifications.add(classification)
+
+            elif classification_type == ClassificationType.COUNTRY:
+                classification = CountryClassification.objects.get(
+                    slug=slug,
+                )
+                self.country_classifications.add(classification)
+
+            elif classification_type == ClassificationType.CITY:
+                classification = CityClassification.objects.get(
+                    slug=slug,
+                )
+                self.city_classifications.add(classification)
+
+            elif classification_type == ClassificationType.SEASON:
+                classification = SeasonClassification.objects.get(
+                    slug=slug,
+                )
+                self.season_classifications.add(classification)

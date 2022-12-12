@@ -9,11 +9,12 @@ from .models import (
     RegionClassification,
     SeasonClassification,
 )
-from .serializers import ClassificationPercolatorSerializer
+from .serializers import ClassificationPercolatorSerializer, ProductDocumentSerializer
 
 
 @admin.register(ProductDocument)
 class ProductDocumentAdmin(admin.ModelAdmin):
+    list_display = ("title",)
     search_fields = ("category_classifications",)
     filter_horizontal = (
         "category_classifications",
@@ -22,6 +23,27 @@ class ProductDocumentAdmin(admin.ModelAdmin):
         "city_classifications",
         "season_classifications",
     )
+    actions = ["classify_documents", "clear_classifications"]
+
+    @admin.action(description="Classify documents")
+    def classify_documents(self, request, queryset):
+        for obj in queryset:
+            obj.classify()
+        self.message_user(
+            request,
+            _("Classified products."),
+            messages.SUCCESS,
+        )
+
+    @admin.action(description="Clear classifications")
+    def clear_classifications(self, request, queryset):
+        for obj in queryset:
+            obj.clear_classifications()
+        self.message_user(
+            request,
+            _("Clear classifications."),
+            messages.SUCCESS,
+        )
 
 
 class BaseClassificationAdmin(admin.ModelAdmin):
