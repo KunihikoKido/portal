@@ -1,10 +1,12 @@
+from apps.search.test import TestCase
+
 from ..models import Classification
 from ..serializers import ClassificationPercolatorSerializer
-from ..test import TestCase
 
 
 class ClassificationPercolatorTest(TestCase):
     def setUp(self):
+        super().setUp()
         self.classification = Classification(
             id=1,
             slug="sightseeing",
@@ -16,7 +18,6 @@ class ClassificationPercolatorTest(TestCase):
         )
         self.classification.save()
         self.percolator = {
-            "id": "classification-1",
             "query": {
                 "bool": {
                     "should": [
@@ -44,25 +45,28 @@ class ClassificationPercolatorTest(TestCase):
         percolator = ClassificationPercolatorSerializer(
             instance=self.classification
         ).data
+        percolator.pop("id")
         self.assertEqual(self.percolator, percolator)
 
     def test_index_percolator(self):
         percolator = ClassificationPercolatorSerializer(
             instance=self.classification
         ).data
+        doc_id = percolator.pop("id")
         Classification.index_document(
-            id=percolator["id"],
+            id=doc_id,
             document=percolator,
         )
-        response = Classification.get_document(id=percolator["id"])
+        response = Classification.get_document(id=doc_id)
         self.assertEqual(percolator, response["_source"])
 
     def test_match_percolate_query(self):
         percolator = ClassificationPercolatorSerializer(
             instance=self.classification
         ).data
+        doc_id = percolator.pop("id")
         Classification.index_document(
-            id=percolator["id"],
+            id=doc_id,
             document=percolator,
         )
         Classification.refresh_index()
@@ -70,7 +74,7 @@ class ClassificationPercolatorTest(TestCase):
             query={
                 "percolate": {
                     "field": "query",
-                    "document": {"message": "ハワイ一周島内観光ツアー"},
+                    "document": {"title": "ハワイ一周島内観光ツアー"},
                 },
             },
             source_includes=["_meta"],
@@ -95,8 +99,9 @@ class ClassificationPercolatorTest(TestCase):
         percolator = ClassificationPercolatorSerializer(
             instance=self.classification
         ).data
+        doc_id = percolator.pop("id")
         Classification.index_document(
-            id=percolator["id"],
+            id=doc_id,
             document=percolator,
         )
         Classification.refresh_index()
@@ -104,7 +109,7 @@ class ClassificationPercolatorTest(TestCase):
             query={
                 "percolate": {
                     "field": "query",
-                    "document": {"message": "沖縄の海でダイビング初心者歓迎"},
+                    "document": {"title": "沖縄の海でダイビング初心者歓迎"},
                 }
             },
             source_includes=["_meta"],

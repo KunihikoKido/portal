@@ -1,5 +1,6 @@
+from apps.search.test import TestCase
+
 from ..models import ProductDocument
-from ..test import TestCase
 
 
 class DocumentModelTest(TestCase):

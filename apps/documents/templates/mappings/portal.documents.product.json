@@ -1,3 +1,335 @@
 {
-  "properties": {}
+  "properties": {
+    "_all": {
+      "type": "text",
+      "analyzer": "language_analyzer"
+    },
+    "brand_name": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        },
+        "readingform": {
+          "type": "text",
+          "analyzer": "readingform_analyzer",
+          "search_analyzer": "readingform_search_analyzer"
+        },
+        "substring": {
+          "type": "text",
+          "analyzer": "substring_analyzer"
+        }
+      },
+      "copy_to": [
+        "_all"
+      ],
+      "term_vector": "yes",
+      "analyzer": "language_analyzer",
+      "fielddata": true
+    },
+    "category_classifications": {
+      "properties": {
+        "key": {
+          "type": "keyword",
+          "ignore_above": 256
+        },
+        "name": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            },
+            "readingform": {
+              "type": "text",
+              "analyzer": "readingform_analyzer",
+              "search_analyzer": "readingform_search_analyzer"
+            },
+            "substring": {
+              "type": "text",
+              "analyzer": "substring_analyzer"
+            }
+          },
+          "copy_to": [
+            "_all"
+          ],
+          "term_vector": "yes",
+          "analyzer": "language_analyzer",
+          "fielddata": true
+        },
+        "order": {
+          "type": "long"
+        },
+        "slug": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          },
+          "term_vector": "yes",
+          "analyzer": "language_analyzer"
+        }
+      }
+    },
+    "region_classifications": {
+      "properties": {
+        "key": {
+          "type": "keyword",
+          "ignore_above": 256
+        },
+        "name": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            },
+            "readingform": {
+              "type": "text",
+              "analyzer": "readingform_analyzer",
+              "search_analyzer": "readingform_search_analyzer"
+            },
+            "substring": {
+              "type": "text",
+              "analyzer": "substring_analyzer"
+            }
+          },
+          "copy_to": [
+            "_all"
+          ],
+          "term_vector": "yes",
+          "analyzer": "language_analyzer",
+          "fielddata": true
+        },
+        "order": {
+          "type": "long"
+        },
+        "slug": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          },
+          "term_vector": "yes",
+          "analyzer": "language_analyzer"
+        }
+      }
+    },
+    "country_classifications": {
+      "properties": {
+        "key": {
+          "type": "keyword",
+          "ignore_above": 256
+        },
+        "name": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            },
+            "readingform": {
+              "type": "text",
+              "analyzer": "readingform_analyzer",
+              "search_analyzer": "readingform_search_analyzer"
+            },
+            "substring": {
+              "type": "text",
+              "analyzer": "substring_analyzer"
+            }
+          },
+          "copy_to": [
+            "_all"
+          ],
+          "term_vector": "yes",
+          "analyzer": "language_analyzer",
+          "fielddata": true
+        },
+        "order": {
+          "type": "long"
+        },
+        "slug": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          },
+          "term_vector": "yes",
+          "analyzer": "language_analyzer"
+        }
+      }
+    },
+    "city_classifications": {
+      "properties": {
+        "key": {
+          "type": "keyword",
+          "ignore_above": 256
+        },
+        "name": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            },
+            "readingform": {
+              "type": "text",
+              "analyzer": "readingform_analyzer",
+              "search_analyzer": "readingform_search_analyzer"
+            },
+            "substring": {
+              "type": "text",
+              "analyzer": "substring_analyzer"
+            }
+          },
+          "copy_to": [
+            "_all"
+          ],
+          "term_vector": "yes",
+          "analyzer": "language_analyzer",
+          "fielddata": true
+        },
+        "order": {
+          "type": "long"
+        },
+        "slug": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          },
+          "term_vector": "yes",
+          "analyzer": "language_analyzer"
+        }
+      }
+    },
+    "season_classifications": {
+      "properties": {
+        "key": {
+          "type": "keyword",
+          "ignore_above": 256
+        },
+        "name": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            },
+            "readingform": {
+              "type": "text",
+              "analyzer": "readingform_analyzer",
+              "search_analyzer": "readingform_search_analyzer"
+            },
+            "substring": {
+              "type": "text",
+              "analyzer": "substring_analyzer"
+            }
+          },
+          "copy_to": [
+            "_all"
+          ],
+          "term_vector": "yes",
+          "analyzer": "language_analyzer",
+          "fielddata": true
+        },
+        "order": {
+          "type": "long"
+        },
+        "slug": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          },
+          "term_vector": "yes",
+          "analyzer": "language_analyzer"
+        }
+      }
+    },
+    "description": {
+      "type": "text",
+      "copy_to": [
+        "_all"
+      ],
+      "term_vector": "yes",
+      "analyzer": "language_analyzer",
+      "fielddata": true
+    },
+    "high_price": {
+      "type": "long"
+    },
+    "image_url": {
+      "type": "keyword",
+      "ignore_above": 256
+    },
+    "is_active": {
+      "type": "boolean"
+    },
+    "low_price": {
+      "type": "long"
+    },
+    "offer_count": {
+      "type": "long"
+    },
+    "price_currency": {
+      "type": "keyword",
+      "ignore_above": 256
+    },
+    "product_id": {
+      "type": "keyword",
+      "ignore_above": 256
+    },
+    "pub_date": {
+      "type": "date"
+    },
+    "query": {
+      "type": "percolator"
+    },
+    "rating": {
+      "type": "float"
+    },
+    "review_count": {
+      "type": "long"
+    },
+    "title": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        },
+        "readingform": {
+          "type": "text",
+          "analyzer": "readingform_analyzer",
+          "search_analyzer": "readingform_search_analyzer"
+        },
+        "substring": {
+          "type": "text",
+          "analyzer": "substring_analyzer"
+        }
+      },
+      "copy_to": [
+        "_all"
+      ],
+      "term_vector": "yes",
+      "analyzer": "language_analyzer",
+      "fielddata": true
+    },
+    "url": {
+      "type": "keyword",
+      "ignore_above": 256
+    }
+  }
 }
