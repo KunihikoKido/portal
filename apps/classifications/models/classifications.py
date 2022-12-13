@@ -13,8 +13,8 @@ class ClassificationType(models.TextChoices):
 
 
 class Classification(BaseSearchModel):
-    slug = models.SlugField(_("slug"), unique=True)
-    name = models.CharField(_("name"), unique=True, max_length=100)
+    slug = models.SlugField(_("slug"))
+    name = models.CharField(_("name"), max_length=100)
     order = models.PositiveIntegerField(
         _("order"),
         default=0,
@@ -47,6 +47,7 @@ class Classification(BaseSearchModel):
         verbose_name = _("Classification")
         verbose_name_plural = _("Classifications")
         ordering = ("order",)
+        unique_together = ["slug", "name", "classification_type"]
         index_name = "portal.documents.product"
         mapping_template = "mappings/portal.documents.classification.json"
 
