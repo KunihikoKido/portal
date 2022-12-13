@@ -1,17 +1,10 @@
 import json
 
-import django.db.models.options as model_options
 from django.conf import settings
 from django.db import models
 from django.template.loader import render_to_string
 
 ELASTICSEARCH = settings.ELASTICSEARCH["default"]
-
-model_options.DEFAULT_NAMES += (
-    "index_name",
-    "mapping_template",
-    "elasticsearch",
-)
 
 
 class BaseSearchModel(models.Model):
@@ -19,7 +12,7 @@ class BaseSearchModel(models.Model):
         abstract = True
         index_name = None
         mapping_template = None
-        elasticsearch = None
+        elasticsearch = ELASTICSEARCH["client"]
 
     @classmethod
     def create_index(cls):

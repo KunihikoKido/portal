@@ -1,15 +1,8 @@
-import django.db.models.options as model_options
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from .classifications import Classification, ClassificationType
-
-model_options.DEFAULT_NAMES += (
-    "index_name",
-    "mapping_template",
-    "elasticsearch",
-)
 
 ELASTICSEARCH = settings.ELASTICSEARCH["default"]
 
