@@ -119,12 +119,13 @@ class ProductDocument(BaseDocument):
     def classify(self):
         from ..serializers import ProductDocumentSerializer
 
-        document = ProductDocumentSerializer(instance=self).data
+        product = ProductDocumentSerializer(instance=self).data
+        product.pop("id")
         response = self._meta.model.search(
             query={
                 "percolate": {
                     "field": "query",
-                    "document": document,
+                    "document": product,
                 },
             }
         )
@@ -163,12 +164,12 @@ class ProductDocument(BaseDocument):
                 )
                 self.season_classifications.add(classification)
 
-    def index_productdocument(self):
+    def index_product(self):
         from ..serializers import ProductDocumentSerializer
 
-        productdocument = ProductDocumentSerializer(instance=self).data
-        doc_id = productdocument.pop("id")
+        product = ProductDocumentSerializer(instance=self).data
+        doc_id = product.pop("id")
         self._meta.model.index_document(
             id=doc_id,
-            document=productdocument,
+            document=product,
         )

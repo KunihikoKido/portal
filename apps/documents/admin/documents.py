@@ -16,7 +16,7 @@ class ProductDocumentAdmin(admin.ModelAdmin):
         "season_classifications",
     )
     actions = [
-        "index_productdocuments",
+        "index_products",
         "classify_documents",
         "clear_classifications",
     ]
@@ -94,9 +94,9 @@ class ProductDocumentAdmin(admin.ModelAdmin):
         )
 
     @admin.action(description=_("Index product documents."))
-    def index_productdocuments(self, request, queryset):
+    def index_products(self, request, queryset):
         for obj in queryset:
-            obj.index_productdocument()
+            obj.index_product()
 
         self.message_user(
             request,
@@ -106,4 +106,4 @@ class ProductDocumentAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
-        obj.index_productdocument()
+        obj.index_product()
