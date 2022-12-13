@@ -19,9 +19,7 @@ class BaseDocument(BaseSearchModel):
     description = models.TextField(_("description"), blank=True)
     image_url = models.URLField(_("image url"), blank=True)
     pub_date = models.DateTimeField(
-        verbose_name=_("publication date"),
-        default=timezone.now,
-        db_index=True,
+        verbose_name=_("publication date"), default=timezone.now, db_index=True
     )
 
     is_active = models.BooleanField(_("active"), default=False)
@@ -47,17 +45,11 @@ class ProductDocument(BaseDocument):
         _("high price"), blank=True, null=True, default=0
     )
     price_currency = models.CharField(
-        _("price currency"),
-        blank=True,
-        max_length=100,
-        default="JPY",
+        _("price currency"), blank=True, max_length=100, default="JPY"
     )
 
     rating = models.FloatField(
-        _("review rating"),
-        default=0.0,
-        blank=False,
-        null=False,
+        _("review rating"), default=0.0, blank=False, null=False
     )
     review_count = models.PositiveIntegerField(
         _("review count"), default=0, blank=False, null=False
@@ -168,8 +160,7 @@ class ProductDocument(BaseDocument):
             classification_type = source["classification_type"]
             slug = source["slug"]
             self.add_classifications(
-                classification_type=classification_type,
-                slug=slug,
+                classification_type=classification_type, slug=slug
             )
 
     def index_product(self):
