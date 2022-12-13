@@ -1,9 +1,19 @@
 from rest_framework import serializers
 
-from apps.classifications.models import ClassificationType
-from apps.classifications.serializers import ClassificationIndexSerializer
+from apps.classifications.models import Classification, ClassificationType
 
 from ..models import ProductDocument
+
+
+class ClassificationIndexSerializer(serializers.ModelSerializer):
+    key = serializers.SerializerMethodField()
+
+    def get_key(self, obj):
+        return obj.get_key()
+
+    class Meta:
+        model = Classification
+        fields = ("slug", "name", "order", "key")
 
 
 class ProductDocumentSerializer(serializers.ModelSerializer):

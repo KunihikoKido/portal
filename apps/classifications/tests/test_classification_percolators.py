@@ -20,6 +20,7 @@ class ClassificationPercolatorTest(TestCase):
             "query": {
                 "bool": {
                     "should": [
+                        {"match_phrase": {"_all": "sightseeing"}},
                         {"match_phrase": {"_all": "観光ツアー"}},
                         {"match_phrase": {"_all": "世界遺産"}},
                         {"match_phrase": {"_all": "半日観光"}},
