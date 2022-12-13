@@ -65,7 +65,7 @@ class Classification(BaseSearchModel):
         return "≠".join(["%06d" % self.order, self.slug, self.name])
 
     def index_classification(self):
-        from ...serializers import ClassificationPercolatorSerializer
+        from ..serializers import ClassificationPercolatorSerializer
 
         percolator = ClassificationPercolatorSerializer(instance=self).data
         doc_id = percolator.pop("id")
