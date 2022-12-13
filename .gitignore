@@ -179,3 +179,4 @@ media
 # End of https://mrkandreev.name/snippets/gitignore-generator/#macOS,Python,Django
 
 .docker.build
+.vscode
