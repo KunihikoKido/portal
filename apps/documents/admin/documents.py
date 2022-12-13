@@ -2,7 +2,6 @@ from django.contrib import admin, messages
 from django.utils.translation import gettext_lazy as _
 
 from ..models import ProductDocument
-from ..serializers import ProductDocumentSerializer
 
 
 @admin.register(ProductDocument)
@@ -97,11 +96,7 @@ class ProductDocumentAdmin(admin.ModelAdmin):
     @admin.action(description=_("Index product documents."))
     def index_productdocuments(self, request, queryset):
         for obj in queryset:
-            document = ProductDocumentSerializer(instance=obj).data
-            ProductDocument.index_document(
-                id=document["id"],
-                document=document,
-            )
+            obj.index_productdocument()
 
         self.message_user(
             request,
@@ -111,8 +106,4 @@ class ProductDocumentAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
-        document = ProductDocumentSerializer(instance=obj).data
-        ProductDocument.index_document(
-            id=document["id"],
-            document=document,
-        )
+        obj.index_productdocument()

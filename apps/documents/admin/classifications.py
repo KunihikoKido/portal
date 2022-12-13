@@ -5,11 +5,9 @@ from ..models import (
     CategoryClassification,
     CityClassification,
     CountryClassification,
-    ProductDocument,
     RegionClassification,
     SeasonClassification,
 )
-from ..serializers import ClassificationPercolatorSerializer
 
 
 class BaseClassificationAdmin(admin.ModelAdmin):
@@ -45,11 +43,7 @@ class BaseClassificationAdmin(admin.ModelAdmin):
     @admin.action(description=_("Index classification rules."))
     def index_classifications(self, request, queryset):
         for obj in queryset:
-            percolator = ClassificationPercolatorSerializer(instance=obj).data
-            ProductDocument.index_document(
-                id=percolator["id"],
-                document=percolator,
-            )
+            obj.index_classification()
         self.message_user(
             request,
             _("Classification rules indexed."),
@@ -58,11 +52,7 @@ class BaseClassificationAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
-        percolator = ClassificationPercolatorSerializer(instance=obj).data
-        ProductDocument.index_document(
-            id=percolator["id"],
-            document=percolator,
-        )
+        obj.index_classification()
 
 
 @admin.register(CategoryClassification)

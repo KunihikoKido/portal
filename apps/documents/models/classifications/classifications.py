@@ -1,5 +1,17 @@
+import django.db.models.options as model_options
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
+from apps.search.models import BaseSearchModel
+
+model_options.DEFAULT_NAMES += (
+    "index_name",
+    "mapping_template",
+    "elasticsearch",
+)
+
+ELASTICSEARCH = settings.ELASTICSEARCH["default"]
 
 
 class ClassificationType(models.TextChoices):
@@ -10,7 +22,7 @@ class ClassificationType(models.TextChoices):
     SEASON = "season", _("Season")
 
 
-class Classification(models.Model):
+class Classification(BaseSearchModel):
     slug = models.SlugField(_("slug"), unique=True)
     name = models.CharField(_("name"), unique=True, max_length=100)
     order = models.PositiveIntegerField(
@@ -45,6 +57,9 @@ class Classification(models.Model):
         verbose_name = _("Classification")
         verbose_name_plural = _("Classifications")
         ordering = ("order",)
+        index_name = "portal.documents.product"
+        mapping_template = "mappings/portal.documents.classification.json"
+        elasticsearch = ELASTICSEARCH["client"]
 
     def __str__(self):
         return self.name
@@ -59,3 +74,13 @@ class Classification(models.Model):
 
     def get_key(self):
         return "≠".join(["%06d" % self.order, self.slug, self.name])
+
+    def index_classification(self):
+        from ...serializers import ClassificationPercolatorSerializer
+
+        percolator = ClassificationPercolatorSerializer(instance=self).data
+        doc_id = percolator.pop("id")
+        self._meta.model.index_document(
+            id=doc_id,
+            document=percolator,
+        )

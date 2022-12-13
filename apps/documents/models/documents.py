@@ -1,11 +1,10 @@
-import json
-
 import django.db.models.options as model_options
 from django.conf import settings
 from django.db import models
-from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+
+from apps.search.models import BaseSearchModel
 
 from ..models import (
     CategoryClassification,
@@ -25,7 +24,7 @@ model_options.DEFAULT_NAMES += (
 ELASTICSEARCH = settings.ELASTICSEARCH["default"]
 
 
-class BaseDocument(models.Model):
+class BaseDocument(BaseSearchModel):
     url = models.URLField(_("url"), unique=True)
     title = models.CharField(_("title"), blank=True, max_length=100)
     description = models.TextField(_("description"), blank=True)
@@ -46,69 +45,6 @@ class BaseDocument(models.Model):
 
     def __str__(self):
         return self.title or self.url
-
-    @classmethod
-    def create_index(cls):
-        return cls._meta.elasticsearch.indices.create(
-            index=cls._meta.index_name, ignore=[400, 404]
-        )
-
-    @classmethod
-    def delete_index(cls):
-        return cls._meta.elasticsearch.indices.delete(
-            index=cls._meta.index_name, ignore=[400, 404]
-        )
-
-    @classmethod
-    def exists_index(cls):
-        return cls._meta.elasticsearch.indices.exists(
-            index=cls._meta.index_name,
-        )
-
-    @classmethod
-    def put_mapping(cls):
-        templates = json.loads(render_to_string(cls._meta.mapping_template))
-        return cls._meta.elasticsearch.indices.put_mapping(
-            index=cls._meta.index_name, **templates
-        )
-
-    @classmethod
-    def flush_index(cls):
-        return cls._meta.elasticsearch.indices.flush(
-            index=cls._meta.index_name,
-        )
-
-    @classmethod
-    def refresh_index(cls):
-        return cls._meta.elasticsearch.indices.refresh(
-            index=cls._meta.index_name,
-        )
-
-    @classmethod
-    def search(cls, query=None, **kwargs):
-        return cls._meta.elasticsearch.search(
-            index=cls._meta.index_name, query=query, **kwargs
-        )
-
-    @classmethod
-    def index_document(cls, id, document, **kwargs):
-        return cls._meta.elasticsearch.index(
-            index=cls._meta.index_name, id=id, document=document, **kwargs
-        )
-
-    @classmethod
-    def get_document(cls, id, **kwargs):
-        return cls._meta.elasticsearch.get(
-            index=cls._meta.index_name,
-            id=id,
-            **kwargs,
-        )
-
-    @classmethod
-    def delete_document(cls, id, **kwargs):
-        return cls._meta.elasticsearch.delete(
-            index=cls._meta.index_name, id=id, **kwargs
-        )
 
 
 class ProductDocument(BaseDocument):
@@ -241,3 +177,13 @@ class ProductDocument(BaseDocument):
                     slug=slug,
                 )
                 self.season_classifications.add(classification)
+
+    def index_productdocument(self):
+        from ..serializers import ProductDocumentSerializer
+
+        productdocument = ProductDocumentSerializer(instance=self).data
+        doc_id = productdocument.pop("id")
+        self._meta.model.index_document(
+            id=doc_id,
+            document=productdocument,
+        )
