@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-13 00:32+0900\n"
+"POT-Creation-Date: 2022-12-13 19:38+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,244 +18,120 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/documents/admin/classifications.py:36
+#: apps/classifications/admin/classifications.py:33
 msgid "Query options"
 msgstr "分類条件オプション"
 
-#: apps/documents/admin/classifications.py:46
+#: apps/classifications/admin/classifications.py:43
 msgid "Index classification rules."
 msgstr "分類ルールをインデックスする"
 
-#: apps/documents/admin/classifications.py:56
+#: apps/classifications/admin/classifications.py:49
 msgid "Classification rules indexed."
 msgstr "分類ルールをインデックスしました。"
 
-#: apps/documents/admin/documents.py:39
-msgid "Product options"
-msgstr "商品オプション"
+#: apps/classifications/apps.py:8
+msgid "classifications"
+msgstr "分類"
 
-#: apps/documents/admin/documents.py:51
-msgid "Review options"
-msgstr "レビューオプション"
-
-#: apps/documents/admin/documents.py:60
-msgid "Offer options"
-msgstr "提供オプション"
-
-#: apps/documents/admin/documents.py:64
-msgid "Classification options"
-msgstr "分類オプション"
-
-#: apps/documents/admin/documents.py:77
-msgid "Classify documents"
-msgstr "商品ドキュメントを分類する"
-
-#: apps/documents/admin/documents.py:83
-msgid "Classified products."
-msgstr "商品ドキュメントを分類しました。"
-
-#: apps/documents/admin/documents.py:87
-msgid "Clear classifications"
-msgstr "分類をクリアする"
-
-#: apps/documents/admin/documents.py:93
-msgid "Cleared classifications."
-msgstr "分類をクリアしました。"
-
-#: apps/documents/admin/documents.py:97
-msgid "Index product documents."
-msgstr "商品ドキュメントをインデックスする"
-
-#: apps/documents/admin/documents.py:108
-msgid "Product documents indexed."
-msgstr "商品ドキュメントをインデックスしました。"
-
-#: apps/documents/apps.py:8
-msgid "documents"
-msgstr "検索ドキュメント"
-
-#: apps/documents/models/classifications/categories.py:20
+#: apps/classifications/models/categories.py:21
 msgid "Category classification"
 msgstr "カテゴリ分類"
 
-#: apps/documents/models/classifications/categories.py:21
+#: apps/classifications/models/categories.py:22
 msgid "Category classifications"
 msgstr "カテゴリ分類"
 
-#: apps/documents/models/classifications/cities.py:26
+#: apps/classifications/models/cities.py:27
 msgid "City classification"
 msgstr "地域分類"
 
-#: apps/documents/models/classifications/cities.py:27
+#: apps/classifications/models/cities.py:28
 msgid "City classifications"
 msgstr "地域分類"
 
-#: apps/documents/models/classifications/classifications.py:6
+#: apps/classifications/models/classifications.py:8
 msgid "Category"
 msgstr "カテゴリ"
 
-#: apps/documents/models/classifications/classifications.py:7
+#: apps/classifications/models/classifications.py:9
 msgid "Region"
 msgstr "リージョン"
 
-#: apps/documents/models/classifications/classifications.py:8
+#: apps/classifications/models/classifications.py:10
 msgid "Country"
 msgstr "国"
 
-#: apps/documents/models/classifications/classifications.py:9
+#: apps/classifications/models/classifications.py:11
 msgid "City"
 msgstr "地域"
 
-#: apps/documents/models/classifications/classifications.py:10
+#: apps/classifications/models/classifications.py:12
 msgid "Season"
 msgstr "シーズン"
 
-#: apps/documents/models/classifications/classifications.py:14
+#: apps/classifications/models/classifications.py:16
 msgid "slug"
 msgstr ""
 
-#: apps/documents/models/classifications/classifications.py:15
+#: apps/classifications/models/classifications.py:17
 msgid "name"
 msgstr "名前"
 
-#: apps/documents/models/classifications/classifications.py:17
+#: apps/classifications/models/classifications.py:19
 msgid "order"
 msgstr "並び順"
 
-#: apps/documents/models/classifications/classifications.py:23
+#: apps/classifications/models/classifications.py:25
 msgid "classification type"
 msgstr "分類タイプ"
 
-#: apps/documents/models/classifications/classifications.py:30
+#: apps/classifications/models/classifications.py:32
 msgid "synonyms"
 msgstr "類義語"
 
-#: apps/documents/models/classifications/classifications.py:33
+#: apps/classifications/models/classifications.py:35
 msgid "The clause (query) should appear in the matching documents."
 msgstr ""
 "この句（クエリー）は、マッチングした文書に掲載されている必要があります。"
 
-#: apps/documents/models/classifications/classifications.py:37
+#: apps/classifications/models/classifications.py:39
 msgid "antonyms"
 msgstr "反意語"
 
-#: apps/documents/models/classifications/classifications.py:40
+#: apps/classifications/models/classifications.py:42
 msgid "The clause (query) must not appear in the matching documents."
 msgstr ""
 "この句（クエリー）は、マッチングした文書に掲載されていない必要があります。"
 
-#: apps/documents/models/classifications/classifications.py:45
+#: apps/classifications/models/classifications.py:47
 msgid "Classification"
 msgstr "分類"
 
-#: apps/documents/models/classifications/classifications.py:46
+#: apps/classifications/models/classifications.py:48
 msgid "Classifications"
 msgstr "分類"
 
-#: apps/documents/models/classifications/countries.py:22
+#: apps/classifications/models/countries.py:23
 msgid "Counrty classification"
 msgstr "国分類"
 
-#: apps/documents/models/classifications/countries.py:23
+#: apps/classifications/models/countries.py:24
 msgid "Country classifications"
 msgstr "国分類"
 
-#: apps/documents/models/classifications/regions.py:22
+#: apps/classifications/models/regions.py:23
 msgid "Region classification"
 msgstr "リージョン分類"
 
-#: apps/documents/models/classifications/regions.py:23
+#: apps/classifications/models/regions.py:24
 msgid "Region classifications"
 msgstr "リージョン分類"
 
-#: apps/documents/models/classifications/seasons.py:22
+#: apps/classifications/models/seasons.py:23
 msgid "Season classification"
 msgstr "シーズン分類"
 
-#: apps/documents/models/classifications/seasons.py:23
+#: apps/classifications/models/seasons.py:24
 msgid "Season classifications"
 msgstr "シーズン分類"
-
-#: apps/documents/models/documents.py:29
-msgid "url"
-msgstr "URL"
-
-#: apps/documents/models/documents.py:30
-msgid "title"
-msgstr "タイトル"
-
-#: apps/documents/models/documents.py:31
-msgid "description"
-msgstr "概要"
-
-#: apps/documents/models/documents.py:32
-msgid "image url"
-msgstr "画像 URL"
-
-#: apps/documents/models/documents.py:34
-msgid "publication date"
-msgstr "公開日付"
-
-#: apps/documents/models/documents.py:39
-msgid "active"
-msgstr "有効"
-
-#: apps/documents/models/documents.py:115
-msgid "product id"
-msgstr "商品 ID"
-
-#: apps/documents/models/documents.py:116
-msgid "brand name"
-msgstr "ブランド名"
-
-#: apps/documents/models/documents.py:119
-msgid "offer count"
-msgstr "購入数"
-
-#: apps/documents/models/documents.py:122
-msgid "low price"
-msgstr "最低価格"
-
-#: apps/documents/models/documents.py:125
-msgid "high price"
-msgstr "最高価格"
-
-#: apps/documents/models/documents.py:128
-msgid "price currency"
-msgstr "通貨"
-
-#: apps/documents/models/documents.py:135
-msgid "review rating"
-msgstr "レビュー評価"
-
-#: apps/documents/models/documents.py:141
-msgid "review count"
-msgstr "レビュー数"
-
-#: apps/documents/models/documents.py:146
-msgid "category classifications"
-msgstr "カテゴリ分類"
-
-#: apps/documents/models/documents.py:154
-msgid "region classifications"
-msgstr "リージョン分類"
-
-#: apps/documents/models/documents.py:162
-msgid "country classifications"
-msgstr "国分類"
-
-#: apps/documents/models/documents.py:170
-msgid "city classifications"
-msgstr "地域分類"
-
-#: apps/documents/models/documents.py:178
-msgid "season classifications"
-msgstr "シーズン分類"
-
-#: apps/documents/models/documents.py:185
-msgid "Product document"
-msgstr "商品ドキュメント"
-
-#: apps/documents/models/documents.py:186
-msgid "Product documents"
-msgstr "商品ドキュメント"
