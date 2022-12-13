@@ -2,6 +2,45 @@
   "properties": {
     "query": {
       "type": "percolator"
+    },
+    "_meta": {
+      "properties": {
+        "classification": {
+          "properties": {
+            "slug": {
+              "type": "text",
+              "analyzer": "language_analyzer",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "name": {
+              "type": "text",
+              "analyzer": "language_analyzer",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "order": {
+              "type": "integer"
+            },
+            "classification_type": {
+              "type": "keyword",
+              "ignore_above": 256
+            },
+            "key": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        }
+      }
     }
   }
 }
