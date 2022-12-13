@@ -116,6 +116,37 @@ class ProductDocument(BaseDocument):
         self.city_classifications.clear()
         self.season_classifications.clear()
 
+    def add_classifications(self, classification_type, slug):
+        if classification_type == ClassificationType.CATEGORY:
+            classification = CategoryClassification.objects.get(
+                slug=slug,
+            )
+            self.category_classifications.add(classification)
+
+        elif classification_type == ClassificationType.REGION:
+            classification = RegionClassification.objects.get(
+                slug=slug,
+            )
+            self.region_classifications.add(classification)
+
+        elif classification_type == ClassificationType.COUNTRY:
+            classification = CountryClassification.objects.get(
+                slug=slug,
+            )
+            self.country_classifications.add(classification)
+
+        elif classification_type == ClassificationType.CITY:
+            classification = CityClassification.objects.get(
+                slug=slug,
+            )
+            self.city_classifications.add(classification)
+
+        elif classification_type == ClassificationType.SEASON:
+            classification = SeasonClassification.objects.get(
+                slug=slug,
+            )
+            self.season_classifications.add(classification)
+
     def classify(self):
         from ..serializers import ProductDocumentSerializer
 
@@ -129,40 +160,17 @@ class ProductDocument(BaseDocument):
                 },
             }
         )
-        self.category_classifications.clear()
+
+        self.clear_classifications()
+
         for item in response["hits"]["hits"]:
             source = item["_source"]["_meta"]["classification"]
             classification_type = source["classification_type"]
             slug = source["slug"]
-            if classification_type == ClassificationType.CATEGORY:
-                classification = CategoryClassification.objects.get(
-                    slug=slug,
-                )
-                self.category_classifications.add(classification)
-
-            elif classification_type == ClassificationType.REGION:
-                classification = RegionClassification.objects.get(
-                    slug=slug,
-                )
-                self.region_classifications.add(classification)
-
-            elif classification_type == ClassificationType.COUNTRY:
-                classification = CountryClassification.objects.get(
-                    slug=slug,
-                )
-                self.country_classifications.add(classification)
-
-            elif classification_type == ClassificationType.CITY:
-                classification = CityClassification.objects.get(
-                    slug=slug,
-                )
-                self.city_classifications.add(classification)
-
-            elif classification_type == ClassificationType.SEASON:
-                classification = SeasonClassification.objects.get(
-                    slug=slug,
-                )
-                self.season_classifications.add(classification)
+            self.add_classifications(
+                classification_type=classification_type,
+                slug=slug,
+            )
 
     def index_product(self):
         from ..serializers import ProductDocumentSerializer
