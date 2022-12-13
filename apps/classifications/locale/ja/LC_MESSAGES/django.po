@@ -1,0 +1,261 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-13 00:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: apps/documents/admin/classifications.py:36
+msgid "Query options"
+msgstr "分類条件オプション"
+
+#: apps/documents/admin/classifications.py:46
+msgid "Index classification rules."
+msgstr "分類ルールをインデックスする"
+
+#: apps/documents/admin/classifications.py:56
+msgid "Classification rules indexed."
+msgstr "分類ルールをインデックスしました。"
+
+#: apps/documents/admin/documents.py:39
+msgid "Product options"
+msgstr "商品オプション"
+
+#: apps/documents/admin/documents.py:51
+msgid "Review options"
+msgstr "レビューオプション"
+
+#: apps/documents/admin/documents.py:60
+msgid "Offer options"
+msgstr "提供オプション"
+
+#: apps/documents/admin/documents.py:64
+msgid "Classification options"
+msgstr "分類オプション"
+
+#: apps/documents/admin/documents.py:77
+msgid "Classify documents"
+msgstr "商品ドキュメントを分類する"
+
+#: apps/documents/admin/documents.py:83
+msgid "Classified products."
+msgstr "商品ドキュメントを分類しました。"
+
+#: apps/documents/admin/documents.py:87
+msgid "Clear classifications"
+msgstr "分類をクリアする"
+
+#: apps/documents/admin/documents.py:93
+msgid "Cleared classifications."
+msgstr "分類をクリアしました。"
+
+#: apps/documents/admin/documents.py:97
+msgid "Index product documents."
+msgstr "商品ドキュメントをインデックスする"
+
+#: apps/documents/admin/documents.py:108
+msgid "Product documents indexed."
+msgstr "商品ドキュメントをインデックスしました。"
+
+#: apps/documents/apps.py:8
+msgid "documents"
+msgstr "検索ドキュメント"
+
+#: apps/documents/models/classifications/categories.py:20
+msgid "Category classification"
+msgstr "カテゴリ分類"
+
+#: apps/documents/models/classifications/categories.py:21
+msgid "Category classifications"
+msgstr "カテゴリ分類"
+
+#: apps/documents/models/classifications/cities.py:26
+msgid "City classification"
+msgstr "地域分類"
+
+#: apps/documents/models/classifications/cities.py:27
+msgid "City classifications"
+msgstr "地域分類"
+
+#: apps/documents/models/classifications/classifications.py:6
+msgid "Category"
+msgstr "カテゴリ"
+
+#: apps/documents/models/classifications/classifications.py:7
+msgid "Region"
+msgstr "リージョン"
+
+#: apps/documents/models/classifications/classifications.py:8
+msgid "Country"
+msgstr "国"
+
+#: apps/documents/models/classifications/classifications.py:9
+msgid "City"
+msgstr "地域"
+
+#: apps/documents/models/classifications/classifications.py:10
+msgid "Season"
+msgstr "シーズン"
+
+#: apps/documents/models/classifications/classifications.py:14
+msgid "slug"
+msgstr ""
+
+#: apps/documents/models/classifications/classifications.py:15
+msgid "name"
+msgstr "名前"
+
+#: apps/documents/models/classifications/classifications.py:17
+msgid "order"
+msgstr "並び順"
+
+#: apps/documents/models/classifications/classifications.py:23
+msgid "classification type"
+msgstr "分類タイプ"
+
+#: apps/documents/models/classifications/classifications.py:30
+msgid "synonyms"
+msgstr "類義語"
+
+#: apps/documents/models/classifications/classifications.py:33
+msgid "The clause (query) should appear in the matching documents."
+msgstr ""
+"この句（クエリー）は、マッチングした文書に掲載されている必要があります。"
+
+#: apps/documents/models/classifications/classifications.py:37
+msgid "antonyms"
+msgstr "反意語"
+
+#: apps/documents/models/classifications/classifications.py:40
+msgid "The clause (query) must not appear in the matching documents."
+msgstr ""
+"この句（クエリー）は、マッチングした文書に掲載されていない必要があります。"
+
+#: apps/documents/models/classifications/classifications.py:45
+msgid "Classification"
+msgstr "分類"
+
+#: apps/documents/models/classifications/classifications.py:46
+msgid "Classifications"
+msgstr "分類"
+
+#: apps/documents/models/classifications/countries.py:22
+msgid "Counrty classification"
+msgstr "国分類"
+
+#: apps/documents/models/classifications/countries.py:23
+msgid "Country classifications"
+msgstr "国分類"
+
+#: apps/documents/models/classifications/regions.py:22
+msgid "Region classification"
+msgstr "リージョン分類"
+
+#: apps/documents/models/classifications/regions.py:23
+msgid "Region classifications"
+msgstr "リージョン分類"
+
+#: apps/documents/models/classifications/seasons.py:22
+msgid "Season classification"
+msgstr "シーズン分類"
+
+#: apps/documents/models/classifications/seasons.py:23
+msgid "Season classifications"
+msgstr "シーズン分類"
+
+#: apps/documents/models/documents.py:29
+msgid "url"
+msgstr "URL"
+
+#: apps/documents/models/documents.py:30
+msgid "title"
+msgstr "タイトル"
+
+#: apps/documents/models/documents.py:31
+msgid "description"
+msgstr "概要"
+
+#: apps/documents/models/documents.py:32
+msgid "image url"
+msgstr "画像 URL"
+
+#: apps/documents/models/documents.py:34
+msgid "publication date"
+msgstr "公開日付"
+
+#: apps/documents/models/documents.py:39
+msgid "active"
+msgstr "有効"
+
+#: apps/documents/models/documents.py:115
+msgid "product id"
+msgstr "商品 ID"
+
+#: apps/documents/models/documents.py:116
+msgid "brand name"
+msgstr "ブランド名"
+
+#: apps/documents/models/documents.py:119
+msgid "offer count"
+msgstr "購入数"
+
+#: apps/documents/models/documents.py:122
+msgid "low price"
+msgstr "最低価格"
+
+#: apps/documents/models/documents.py:125
+msgid "high price"
+msgstr "最高価格"
+
+#: apps/documents/models/documents.py:128
+msgid "price currency"
+msgstr "通貨"
+
+#: apps/documents/models/documents.py:135
+msgid "review rating"
+msgstr "レビュー評価"
+
+#: apps/documents/models/documents.py:141
+msgid "review count"
+msgstr "レビュー数"
+
+#: apps/documents/models/documents.py:146
+msgid "category classifications"
+msgstr "カテゴリ分類"
+
+#: apps/documents/models/documents.py:154
+msgid "region classifications"
+msgstr "リージョン分類"
+
+#: apps/documents/models/documents.py:162
+msgid "country classifications"
+msgstr "国分類"
+
+#: apps/documents/models/documents.py:170
+msgid "city classifications"
+msgstr "地域分類"
+
+#: apps/documents/models/documents.py:178
+msgid "season classifications"
+msgstr "シーズン分類"
+
+#: apps/documents/models/documents.py:185
+msgid "Product document"
+msgstr "商品ドキュメント"
+
+#: apps/documents/models/documents.py:186
+msgid "Product documents"
+msgstr "商品ドキュメント"

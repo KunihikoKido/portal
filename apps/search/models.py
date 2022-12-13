@@ -12,60 +12,70 @@ class BaseSearchModel(models.Model):
         abstract = True
         index_name = None
         mapping_template = None
-        elasticsearch = ELASTICSEARCH["client"]
+
+    @classmethod
+    def get_es_client(self):
+        return ELASTICSEARCH["client"]
 
     @classmethod
     def create_index(cls):
-        return cls._meta.elasticsearch.indices.create(
+        client = cls.get_es_client()
+        return client.indices.create(
             index=cls._meta.index_name, ignore=[400, 404]
         )
 
     @classmethod
     def delete_index(cls):
-        return cls._meta.elasticsearch.indices.delete(
+        client = cls.get_es_client()
+        return client.indices.delete(
             index=cls._meta.index_name, ignore=[400, 404]
         )
 
     @classmethod
     def exists_index(cls):
-        return cls._meta.elasticsearch.indices.exists(
+        client = cls.get_es_client()
+        return client.indices.exists(
             index=cls._meta.index_name,
         )
 
     @classmethod
     def put_mapping(cls):
+        client = cls.get_es_client()
         templates = json.loads(render_to_string(cls._meta.mapping_template))
-        return cls._meta.elasticsearch.indices.put_mapping(
+        return client.indices.put_mapping(
             index=cls._meta.index_name, **templates
         )
 
     @classmethod
     def flush_index(cls):
-        return cls._meta.elasticsearch.indices.flush(
+        client = cls.get_es_client()
+        return client.indices.flush(
             index=cls._meta.index_name,
         )
 
     @classmethod
     def refresh_index(cls):
-        return cls._meta.elasticsearch.indices.refresh(
+        client = cls.get_es_client()
+        return client.indices.refresh(
             index=cls._meta.index_name,
         )
 
     @classmethod
     def search(cls, query=None, **kwargs):
-        return cls._meta.elasticsearch.search(
-            index=cls._meta.index_name, query=query, **kwargs
-        )
+        client = cls.get_es_client()
+        return client.search(index=cls._meta.index_name, query=query, **kwargs)
 
     @classmethod
     def index_document(cls, id, document, **kwargs):
-        return cls._meta.elasticsearch.index(
+        client = cls.get_es_client()
+        return client.index(
             index=cls._meta.index_name, id=id, document=document, **kwargs
         )
 
     @classmethod
     def get_document(cls, id, **kwargs):
-        return cls._meta.elasticsearch.get(
+        client = cls.get_es_client()
+        return client.get(
             index=cls._meta.index_name,
             id=id,
             **kwargs,
@@ -73,6 +83,5 @@ class BaseSearchModel(models.Model):
 
     @classmethod
     def delete_document(cls, id, **kwargs):
-        return cls._meta.elasticsearch.delete(
-            index=cls._meta.index_name, id=id, **kwargs
-        )
+        client = cls.get_es_client()
+        return client.delete(index=cls._meta.index_name, id=id, **kwargs)

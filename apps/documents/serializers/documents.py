@@ -1,7 +1,9 @@
 from rest_framework import serializers
 
-from ..models import ClassificationType, ProductDocument
-from .classification import ClassificationIndexSerializer
+from apps.classifications.models import ClassificationType
+from apps.classifications.serializers import ClassificationIndexSerializer
+
+from ..models import ProductDocument
 
 
 class ProductDocumentSerializer(serializers.ModelSerializer):

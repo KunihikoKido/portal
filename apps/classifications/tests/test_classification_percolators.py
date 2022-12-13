@@ -1,4 +1,4 @@
-from ..models import Classification, ProductDocument
+from ..models import Classification
 from ..serializers import ClassificationPercolatorSerializer
 from ..test import TestCase
 
@@ -49,23 +49,23 @@ class ClassificationPercolatorTest(TestCase):
         percolator = ClassificationPercolatorSerializer(
             instance=self.classification
         ).data
-        ProductDocument.index_document(
+        Classification.index_document(
             id=percolator["id"],
             document=percolator,
         )
-        response = ProductDocument.get_document(id=percolator["id"])
+        response = Classification.get_document(id=percolator["id"])
         self.assertEqual(percolator, response["_source"])
 
     def test_match_percolate_query(self):
         percolator = ClassificationPercolatorSerializer(
             instance=self.classification
         ).data
-        ProductDocument.index_document(
+        Classification.index_document(
             id=percolator["id"],
             document=percolator,
         )
-        ProductDocument.refresh_index()
-        response = ProductDocument.search(
+        Classification.refresh_index()
+        response = Classification.search(
             query={
                 "percolate": {
                     "field": "query",
@@ -94,12 +94,12 @@ class ClassificationPercolatorTest(TestCase):
         percolator = ClassificationPercolatorSerializer(
             instance=self.classification
         ).data
-        ProductDocument.index_document(
+        Classification.index_document(
             id=percolator["id"],
             document=percolator,
         )
-        ProductDocument.refresh_index()
-        response = ProductDocument.search(
+        Classification.refresh_index()
+        response = Classification.search(
             query={
                 "percolate": {
                     "field": "query",

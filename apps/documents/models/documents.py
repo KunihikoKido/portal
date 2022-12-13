@@ -1,20 +1,16 @@
-from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from apps.search.models import BaseSearchModel
-
-from ..models import (
+from apps.classifications.models import (
     CategoryClassification,
     CityClassification,
+    ClassificationType,
     CountryClassification,
     RegionClassification,
     SeasonClassification,
 )
-from .classifications import ClassificationType
-
-ELASTICSEARCH = settings.ELASTICSEARCH["default"]
+from apps.search.models import BaseSearchModel
 
 
 class BaseDocument(BaseSearchModel):
@@ -32,9 +28,6 @@ class BaseDocument(BaseSearchModel):
 
     class Meta:
         abstract = True
-        index_name = None
-        mapping_template = None
-        elasticsearch = None
 
     def __str__(self):
         return self.title or self.url
@@ -71,7 +64,7 @@ class ProductDocument(BaseDocument):
     )
 
     category_classifications = models.ManyToManyField(
-        "documents.CategoryClassification",
+        "classifications.CategoryClassification",
         verbose_name=_("category classifications"),
         blank=True,
         related_name="CategoryProductDocument",
@@ -79,7 +72,7 @@ class ProductDocument(BaseDocument):
     )
 
     region_classifications = models.ManyToManyField(
-        "documents.RegionClassification",
+        "classifications.RegionClassification",
         verbose_name=_("region classifications"),
         blank=True,
         related_name="RegionProductDocument",
@@ -87,7 +80,7 @@ class ProductDocument(BaseDocument):
     )
 
     country_classifications = models.ManyToManyField(
-        "documents.CountryClassification",
+        "classifications.CountryClassification",
         verbose_name=_("country classifications"),
         blank=True,
         related_name="CountryProductDocument",
@@ -95,7 +88,7 @@ class ProductDocument(BaseDocument):
     )
 
     city_classifications = models.ManyToManyField(
-        "documents.CityClassification",
+        "classifications.CityClassification",
         verbose_name=_("city classifications"),
         blank=True,
         related_name="CityProductDocument",
@@ -103,7 +96,7 @@ class ProductDocument(BaseDocument):
     )
 
     season_classifications = models.ManyToManyField(
-        "documents.SeasonClassification",
+        "classifications.SeasonClassification",
         verbose_name=_("season classifications"),
         blank=True,
         related_name="SeasonProductDocument",
@@ -115,7 +108,6 @@ class ProductDocument(BaseDocument):
         verbose_name_plural = _("Product documents")
         index_name = "portal.documents.product"
         mapping_template = "mappings/portal.documents.product.json"
-        elasticsearch = ELASTICSEARCH["client"]
 
     def clear_classifications(self):
         self.category_classifications.clear()

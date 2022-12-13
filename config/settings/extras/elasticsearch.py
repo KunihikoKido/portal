@@ -21,5 +21,4 @@ ELASTICSEARCH = {
 model_options.DEFAULT_NAMES += (
     "index_name",
     "mapping_template",
-    "elasticsearch",
 )

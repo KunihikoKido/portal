@@ -1,10 +1,7 @@
-from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from apps.search.models import BaseSearchModel
-
-ELASTICSEARCH = settings.ELASTICSEARCH["default"]
 
 
 class ClassificationType(models.TextChoices):
@@ -52,7 +49,6 @@ class Classification(BaseSearchModel):
         ordering = ("order",)
         index_name = "portal.documents.product"
         mapping_template = "mappings/portal.documents.classification.json"
-        elasticsearch = ELASTICSEARCH["client"]
 
     def __str__(self):
         return self.name
