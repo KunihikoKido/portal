@@ -1,11 +1,37 @@
+from django import forms
 from django.contrib import admin, messages
 from django.utils.translation import gettext_lazy as _
 
 from ..models import ProductDocument
 
 
+class ProductDocumentAdminForm(forms.ModelForm):
+
+    execute_indexing_process = forms.BooleanField(
+        label=_("Execute indexing process"),
+        required=False,
+        help_text=_(
+            "If you wish to run the process, "
+            "check the box and save the data."
+        ),
+    )
+    execute_classify_process = forms.BooleanField(
+        label=_("Execute classify process"),
+        required=False,
+        help_text=_(
+            "If you wish to run the process, "
+            "check the box and save the data."
+        ),
+    )
+
+    class Meta:
+        model = ProductDocument
+        fields = "__all__"
+
+
 @admin.register(ProductDocument)
 class ProductDocumentAdmin(admin.ModelAdmin):
+    form = ProductDocumentAdminForm
     list_display = ("title",)
     search_fields = ("title", "product_id")
     autocomplete_fields = (
@@ -31,7 +57,7 @@ class ProductDocumentAdmin(admin.ModelAdmin):
                     "image_url",
                     "pub_date",
                     "is_active",
-                ),
+                )
             },
         ),
         (
@@ -46,19 +72,8 @@ class ProductDocumentAdmin(admin.ModelAdmin):
                 )
             },
         ),
-        (
-            _("Review options"),
-            {
-                "fields": (
-                    "rating",
-                    "review_count",
-                )
-            },
-        ),
-        (
-            _("Offer options"),
-            {"fields": ("offer_count",)},
-        ),
+        (_("Review options"), {"fields": ("rating", "review_count")}),
+        (_("Offer options"), {"fields": ("offer_count",)}),
         (
             _("Classification options"),
             {
@@ -68,6 +83,15 @@ class ProductDocumentAdmin(admin.ModelAdmin):
                     "country_classifications",
                     "city_classifications",
                     "season_classifications",
+                )
+            },
+        ),
+        (
+            _("Actions"),
+            {
+                "fields": (
+                    "execute_classify_process",
+                    "execute_indexing_process",
                 )
             },
         ),
@@ -106,4 +130,12 @@ class ProductDocumentAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
-        obj.index_product()
+
+        if form.cleaned_data["execute_indexing_process"]:
+            obj.index_product()
+        if form.cleaned_data["execute_classify_process"]:
+            obj.classify()
+
+    def delete_model(self, request, obj):
+        obj.delete_product()
+        return super().delete_model(request, obj)

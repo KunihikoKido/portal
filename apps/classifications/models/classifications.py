@@ -74,3 +74,10 @@ class Classification(BaseSearchModel):
             id=doc_id,
             document=percolator,
         )
+
+    def delete_classification(self):
+        from ..serializers import ClassificationPercolatorSerializer
+
+        percolator = ClassificationPercolatorSerializer(instance=self).data
+        doc_id = percolator.pop("id")
+        self._meta.model.delete_document(id=doc_id)

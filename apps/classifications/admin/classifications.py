@@ -1,16 +1,34 @@
+from django import forms
 from django.contrib import admin, messages
 from django.utils.translation import gettext_lazy as _
 
 from ..models import (
     CategoryClassification,
     CityClassification,
+    Classification,
     CountryClassification,
     RegionClassification,
     SeasonClassification,
 )
 
 
+class ClassificationAdminForm(forms.ModelForm):
+    execute_classify_process = forms.BooleanField(
+        label=_("Execute classify process"),
+        required=False,
+        help_text=_(
+            "If you wish to run the process, "
+            "check the box and save the data."
+        ),
+    )
+
+    class Meta:
+        model = Classification
+        fields = "__all__"
+
+
 class BaseClassificationAdmin(admin.ModelAdmin):
+    form = ClassificationAdminForm
     list_display = (
         "slug",
         "name",
@@ -38,6 +56,12 @@ class BaseClassificationAdmin(admin.ModelAdmin):
                 ),
             },
         ),
+        (
+            _("Actions"),
+            {
+                "fields": ("execute_classify_process",),
+            },
+        ),
     )
 
     @admin.action(description=_("Index classification rules."))
@@ -52,7 +76,12 @@ class BaseClassificationAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
-        obj.index_classification()
+        if form.cleaned_data["execute_classify_process"]:
+            obj.index_classification()
+
+    def delete_model(self, request, obj):
+        obj.delete_classification()
+        return super().delete_model(request, obj)
 
 
 @admin.register(CategoryClassification)

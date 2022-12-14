@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-13 19:38+0900\n"
+"POT-Creation-Date: 2022-12-14 15:58+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,43 +18,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/documents/admin/documents.py:38
+#: apps/documents/admin/documents.py:11
+msgid "Execute indexing process"
+msgstr ""
+
+#: apps/documents/admin/documents.py:14 apps/documents/admin/documents.py:22
+msgid "If you wish to run the process, check the box and save the data."
+msgstr ""
+
+#: apps/documents/admin/documents.py:19
+msgid "Execute classify process"
+msgstr ""
+
+#: apps/documents/admin/documents.py:64
 msgid "Product options"
 msgstr "商品オプション"
 
-#: apps/documents/admin/documents.py:50
+#: apps/documents/admin/documents.py:75
 msgid "Review options"
 msgstr "レビューオプション"
 
-#: apps/documents/admin/documents.py:59
+#: apps/documents/admin/documents.py:76
 msgid "Offer options"
 msgstr "提供オプション"
 
-#: apps/documents/admin/documents.py:63
+#: apps/documents/admin/documents.py:78
 msgid "Classification options"
 msgstr "分類オプション"
 
-#: apps/documents/admin/documents.py:76
+#: apps/documents/admin/documents.py:90
+msgid "Actions"
+msgstr ""
+
+#: apps/documents/admin/documents.py:100
 msgid "Classify documents"
 msgstr "商品ドキュメントを分類する"
 
-#: apps/documents/admin/documents.py:82
+#: apps/documents/admin/documents.py:106
 msgid "Classified products."
 msgstr "商品ドキュメントを分類しました。"
 
-#: apps/documents/admin/documents.py:86
+#: apps/documents/admin/documents.py:110
 msgid "Clear classifications"
 msgstr "分類をクリアする"
 
-#: apps/documents/admin/documents.py:92
+#: apps/documents/admin/documents.py:116
 msgid "Cleared classifications."
 msgstr "分類をクリアしました。"
 
-#: apps/documents/admin/documents.py:96
+#: apps/documents/admin/documents.py:120
 msgid "Index product documents."
 msgstr "商品ドキュメントをインデックスする"
 
-#: apps/documents/admin/documents.py:103
+#: apps/documents/admin/documents.py:127
 msgid "Product documents indexed."
 msgstr "商品ドキュメントをインデックスしました。"
 
@@ -82,67 +98,66 @@ msgstr "画像 URL"
 msgid "publication date"
 msgstr "公開日付"
 
-#: apps/documents/models/documents.py:27
+#: apps/documents/models/documents.py:25
 msgid "active"
 msgstr "有効"
 
-#: apps/documents/models/documents.py:37
+#: apps/documents/models/documents.py:35
 msgid "product id"
 msgstr "商品 ID"
 
-#: apps/documents/models/documents.py:38
+#: apps/documents/models/documents.py:36
 msgid "brand name"
 msgstr "ブランド名"
 
-#: apps/documents/models/documents.py:41
+#: apps/documents/models/documents.py:39
 msgid "offer count"
 msgstr "購入数"
 
-#: apps/documents/models/documents.py:44
+#: apps/documents/models/documents.py:42
 msgid "low price"
 msgstr "最低価格"
 
-#: apps/documents/models/documents.py:47
+#: apps/documents/models/documents.py:45
 msgid "high price"
 msgstr "最高価格"
 
-#: apps/documents/models/documents.py:50
+#: apps/documents/models/documents.py:48
 msgid "price currency"
 msgstr "通貨"
 
-#: apps/documents/models/documents.py:57
+#: apps/documents/models/documents.py:52
 msgid "review rating"
 msgstr "レビュー評価"
 
-#: apps/documents/models/documents.py:63
+#: apps/documents/models/documents.py:55
 msgid "review count"
 msgstr "レビュー数"
 
-#: apps/documents/models/documents.py:68
+#: apps/documents/models/documents.py:60
 msgid "category classifications"
 msgstr "カテゴリ分類"
 
-#: apps/documents/models/documents.py:76
+#: apps/documents/models/documents.py:68
 msgid "region classifications"
 msgstr "リージョン分類"
 
-#: apps/documents/models/documents.py:84
+#: apps/documents/models/documents.py:76
 msgid "country classifications"
 msgstr "国分類"
 
-#: apps/documents/models/documents.py:92
+#: apps/documents/models/documents.py:84
 msgid "city classifications"
 msgstr "地域分類"
 
-#: apps/documents/models/documents.py:100
+#: apps/documents/models/documents.py:92
 msgid "season classifications"
 msgstr "シーズン分類"
 
-#: apps/documents/models/documents.py:107
+#: apps/documents/models/documents.py:99
 msgid "Product document"
 msgstr "商品ドキュメント"
 
-#: apps/documents/models/documents.py:108
+#: apps/documents/models/documents.py:100
 msgid "Product documents"
 msgstr "商品ドキュメント"
-
