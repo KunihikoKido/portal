@@ -139,29 +139,65 @@ class ProductDocument(BaseDocument):
             )
             self.season_classifications.add(classification)
 
-    def classify(self):
+    def get_classification_types(self):
+        classification_types = [
+            ClassificationType.CATEGORY,
+            ClassificationType.REGION,
+            ClassificationType.COUNTRY,
+            ClassificationType.CITY,
+            ClassificationType.SEASON,
+        ]
+        return classification_types
+
+    def percolate_document(self, document, classification_type):
+        query = {
+            "bool": {
+                "must": [
+                    {
+                        "percolate": {
+                            "field": "query",
+                            "document": document,
+                        },
+                    },
+                    {
+                        "terms": {
+                            "_meta.classifications.classification_type": [
+                                classification_type
+                            ]
+                        }
+                    },
+                ]
+            }
+        }
+
+        response = self._meta.model.search(
+            query=query, size=100, source=["_meta.classifications.*"]
+        )
+        return response
+
+    def get_serialized_product(self):
         from ..serializers import ProductDocumentSerializer
 
         product = ProductDocumentSerializer(instance=self).data
-        product.pop("id")
-        response = self._meta.model.search(
-            query={
-                "percolate": {
-                    "field": "query",
-                    "document": product,
-                },
-            }
-        )
+        return product
 
+    def classify(self):
         self.clear_classifications()
 
-        for item in response["hits"]["hits"]:
-            source = item["_source"]["_meta"]["classification"]
-            classification_type = source["classification_type"]
-            slug = source["slug"]
-            self.add_classifications(
-                classification_type=classification_type, slug=slug
+        product = self.get_serialized_product()
+        product.pop("id")
+
+        for classification_type in self.get_classification_types():
+            response = self.percolate_document(
+                document=product, classification_type=classification_type
             )
+            for item in response["hits"]["hits"]:
+                source = item["_source"]["_meta"]["classification"]
+                classification_type = source["classification_type"]
+                slug = source["slug"]
+                self.add_classifications(
+                    classification_type=classification_type, slug=slug
+                )
 
     def index_product(self):
         from ..serializers import ProductDocumentSerializer
