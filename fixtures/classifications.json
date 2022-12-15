@@ -1,0 +1,338 @@
+[
+    {
+        "model": "classifications.classification",
+        "pk": 1,
+        "fields": {
+            "slug": "sightseeing",
+            "name": "観光ツアー",
+            "order": 1,
+            "classification_type": "category",
+            "synonyms": "",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 2,
+        "fields": {
+            "slug": "world-heritage",
+            "name": "世界遺産ツアー",
+            "order": 2,
+            "classification_type": "category",
+            "synonyms": "世界遺産\n自然遺産\n文化遺産",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 3,
+        "fields": {
+            "slug": "movies-and-locations",
+            "name": "映画・ロケ地",
+            "order": 3,
+            "classification_type": "category",
+            "synonyms": "ロケ地\n映画\n映画撮影地\nドラマロケ",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 4,
+        "fields": {
+            "slug": "theme-park",
+            "name": "テーマパーク",
+            "order": 4,
+            "classification_type": "category",
+            "synonyms": "",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 5,
+        "fields": {
+            "slug": "museum",
+            "name": "美術館・博物館",
+            "order": 5,
+            "classification_type": "category",
+            "synonyms": "美術館\n博物館\n水族館",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 6,
+        "fields": {
+            "slug": "shopping",
+            "name": "ショッピング",
+            "order": 6,
+            "classification_type": "category",
+            "synonyms": "アウトレット\nショッピングツアー\nマーケットツアー\n雑貨巡り\n民芸品\n大型スーパー",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 7,
+        "fields": {
+            "slug": "show-entertainment",
+            "name": "ショー・エンタメ",
+            "order": 7,
+            "classification_type": "category",
+            "synonyms": "キャバレー\nショー鑑賞\nディナーショー\nミュージカル\n噴水ショー\nコンサート\nディナーショー\nクラシックコンサート\n古式舞踊\n現代舞踊",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 8,
+        "fields": {
+            "slug": "spa-esthetic",
+            "name": "スパ・エステ・マッサージ",
+            "order": 8,
+            "classification_type": "category",
+            "synonyms": "マッサージ\nスパ\nエステ",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 9,
+        "fields": {
+            "slug": "cruise",
+            "name": "ディナークルーズ",
+            "order": 0,
+            "classification_type": "category",
+            "synonyms": "",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 10,
+        "fields": {
+            "slug": "hawaii",
+            "name": "ハワイ",
+            "order": 0,
+            "classification_type": "region",
+            "synonyms": "ワイキキ\nオアフ島\nハワイ島\nホノルル\nワイキキ",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 11,
+        "fields": {
+            "slug": "hawaii",
+            "name": "ハワイ",
+            "order": 0,
+            "classification_type": "country",
+            "synonyms": "ワイキキ\nオアフ島\nハワイ島\nホノルル\nワイキキ",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 12,
+        "fields": {
+            "slug": "ohahu",
+            "name": "オアフ島",
+            "order": 0,
+            "classification_type": "city",
+            "synonyms": "ホノルル\nワイキキ",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 13,
+        "fields": {
+            "slug": "bigiland",
+            "name": "ハワイ島",
+            "order": 0,
+            "classification_type": "city",
+            "synonyms": "",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 14,
+        "fields": {
+            "slug": "japan",
+            "name": "日本国内",
+            "order": 0,
+            "classification_type": "region",
+            "synonyms": "北海道\n東京\n大阪\n京都\n屋久島\n東北\n関東\n甲信越\n東海\n北陸\n関西\n東海\n四国\n山陰\n山陽\n奄美群島\n沖縄\n青森\n秋田\n岩手\n宮城\n山形\n福島\n新潟\n佐渡島\n富山\n石川\n福井\n栃木\n群馬\n茨城\n埼玉\n千葉\n神奈川\n横浜\n箱根\n伊豆諸島\n小笠原諸島\n長野\n岐阜\n山梨\n静岡\n愛知\n滋賀\n三重\n奈良\n兵庫\n淡路島\n和歌山\n愛媛\n香川\n高知\n徳島\n島根\n鳥取\n広島\n岡山\n山口\n福岡\n佐賀\n宮崎\n大分\n熊本\n長崎\n鹿児島\n種子島\n五島列島\n壱岐\n対馬",
+            "antonyms": "日本風"
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 15,
+        "fields": {
+            "slug": "europe",
+            "name": "ヨーロッパ",
+            "order": 0,
+            "classification_type": "region",
+            "synonyms": "フランス\nイタリア\nスペイン\nイギリス\nドイツ\nアイスランド\nアイルランド\nアルバニア\nエストニア\nオーストリア\nオランダ\nキプロス\nギリシャ\nクロアチア\nコソボ\nジョージア\nグルジア\nスイス\nスウェーデン\nスヴァールバル諸島\nスロバキア\nスロベニア\nセルビア\nチェコ\nデンマーク\nトルコ\nノルウェー\nハンガリー\nフィンランド\nブルガリア\nベルギー\nポーランド\nボスニア\nヘルツェゴビナ\nポルトガル\nマケドニア\nマルタ\nモンテネグロ\nリトアニア\nルーマニア",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 16,
+        "fields": {
+            "slug": "mideast",
+            "name": "中東",
+            "order": 0,
+            "classification_type": "region",
+            "synonyms": "ドバイ\nアブダビ\nヨルダン\nイスラエル\nイラン\nオマーン\nカタール\nクェート\nサウジアラビア\nバーレーン\nレバノン",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 17,
+        "fields": {
+            "slug": "africa",
+            "name": "アフリカ",
+            "order": 0,
+            "classification_type": "region",
+            "synonyms": "エジプト\nモロッコ\n南アフリカ\nケニア\nチュニジア\nマダガスカル\nエチオピア\nザンビア\nスーダン\nセーシェル\nタンザニア\nナミビア\nモーリシャス\nルワンダ\nレユニオン",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 18,
+        "fields": {
+            "slug": "asia",
+            "name": "アジア",
+            "order": 0,
+            "classification_type": "region",
+            "synonyms": "タイ\n台湾\n韓国\n香港\nマカオ\n中国\nバリ島\nシンガポール\nベトナム\nカンボジア\nセブ島\nマレーシア\nインド\nウズベキスタン\nスリランカ\nネパール\nパキスタン\nバングラデシュ\nブータン\nミャンマー\nモンゴル\nラオス",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 19,
+        "fields": {
+            "slug": "oceania",
+            "name": "オセアニア",
+            "order": 0,
+            "classification_type": "region",
+            "synonyms": "オーストラリア\nケアンズ\nニュージーランド\nパプアニューギニア\nソロモン諸島\nトンガ\nクック諸島\nサモア",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 20,
+        "fields": {
+            "slug": "australia",
+            "name": "オーストラリア",
+            "order": 0,
+            "classification_type": "country",
+            "synonyms": "ケアンズ\nエアーズロック\nゴールドコースト\nシドニー\nメルボルン\nパース\nアデレード\nアリススプリングス\nエクスマウス\nダーウィン\nタスマニア\nハミルトン島\nブリスベン\nブルーム",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 21,
+        "fields": {
+            "slug": "cairns",
+            "name": "ケアンズ",
+            "order": 0,
+            "classification_type": "city",
+            "synonyms": "",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 22,
+        "fields": {
+            "slug": "summer-vacation",
+            "name": "夏休み",
+            "order": 0,
+            "classification_type": "season",
+            "synonyms": "",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 23,
+        "fields": {
+            "slug": "winter-vacation",
+            "name": "冬休み",
+            "order": 0,
+            "classification_type": "season",
+            "synonyms": "",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 24,
+        "fields": {
+            "slug": "spring-break",
+            "name": "春休み",
+            "order": 0,
+            "classification_type": "season",
+            "synonyms": "",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 25,
+        "fields": {
+            "slug": "new-years-holiday",
+            "name": "年末年始",
+            "order": 0,
+            "classification_type": "season",
+            "synonyms": "大晦日\n元旦\nカウントダウン",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 26,
+        "fields": {
+            "slug": "christmas",
+            "name": "クリスマス",
+            "order": 0,
+            "classification_type": "season",
+            "synonyms": "",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 27,
+        "fields": {
+            "slug": "golden-week",
+            "name": "ゴールデンウィーク",
+            "order": 0,
+            "classification_type": "season",
+            "synonyms": "",
+            "antonyms": ""
+        }
+    },
+    {
+        "model": "classifications.classification",
+        "pk": 28,
+        "fields": {
+            "slug": "resutaurant",
+            "name": "レストラン・グルメ",
+            "order": 0,
+            "classification_type": "category",
+            "synonyms": "レストラン\nグルメ\nディナー\n食事券\nフレンチ\nBBQ\nシーフード\nイタリアン",
+            "antonyms": ""
+        }
+    }
+]

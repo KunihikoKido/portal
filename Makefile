@@ -42,7 +42,7 @@ clean: ## Clean docker containers and clean this project
 	@find . -name db.sqlite3 | xargs rm -rf
 
 start: ## Start docker containers.
-start: build django.migrate django.loadusers django.compilemessages
+start: build django.migrate django.compilemessages django.loadusers django.loadfixtures
 	@docker-compose up -d
 
 test: ## Run tests
@@ -89,6 +89,10 @@ django.createsuperuser: ## Run createsuperuser commands for django
 
 django.loadusers: ## Load initial data
 	@docker-compose run --rm web python manage.py loaddata fixtures/users.json
+
+django.loadfixtures: ## Load initial data
+	@docker-compose run --rm web python manage.py loaddata fixtures/classifications.json
+	@docker-compose run --rm web python manage.py loaddata fixtures/documents.json
 
 django.makemessages: ## Make messages
 	@docker-compose run --rm web python manage.py makemessages -l ja
