@@ -55,7 +55,9 @@ class Classification(BaseSearchModel):
         return self.name
 
     def clean_splitlines(self, text):
-        return "\n".join([t for t in text.splitlines() if t])
+        return "\n".join(
+            sorted(list(set([t for t in text.splitlines() if t])))
+        )
 
     def save(self, *args, **kwargs):
         self.synonyms = self.clean_splitlines(self.synonyms)
