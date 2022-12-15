@@ -82,6 +82,7 @@ django.dbshell: ## Run dbshell commands for django
 	@docker-compose run --rm web python manage.py dbshell
 
 django.shell: ## Run shell commands for django
+django.shell: django.migrate django.compilemessages django.loadusers django.loadfixtures
 	@docker-compose run --rm web python manage.py shell
 
 django.createsuperuser: ## Run createsuperuser commands for django
