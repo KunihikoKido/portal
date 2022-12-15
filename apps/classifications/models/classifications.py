@@ -65,19 +65,21 @@ class Classification(BaseSearchModel):
     def get_key(self):
         return "≠".join(["%06d" % self.order, self.slug, self.name])
 
-    def index_classification(self):
-        from ..serializers import ClassificationPercolatorSerializer
+    def get_serialized_classification_rule(self):
+        from ..serializers import ClassificationRuleSerializer
 
-        percolator = ClassificationPercolatorSerializer(instance=self).data
-        doc_id = percolator.pop("id")
+        classification_rule = ClassificationRuleSerializer(instance=self).data
+        return classification_rule
+
+    def index_classification(self):
+        classification_tule = self.get_serialized_classification_rule()
+        doc_id = classification_tule.pop("id")
         self._meta.model.index_document(
             id=doc_id,
-            document=percolator,
+            document=classification_tule,
         )
 
     def delete_classification(self):
-        from ..serializers import ClassificationPercolatorSerializer
-
-        percolator = ClassificationPercolatorSerializer(instance=self).data
-        doc_id = percolator.pop("id")
+        classification_tule = self.get_serialized_classification_rule()
+        doc_id = classification_tule.pop("id")
         self._meta.model.delete_document(id=doc_id)

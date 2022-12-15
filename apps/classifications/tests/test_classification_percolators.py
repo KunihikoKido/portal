@@ -1,7 +1,7 @@
 from apps.search.test import TestCase
 
 from ..models import Classification
-from ..serializers import ClassificationPercolatorSerializer
+from ..serializers import ClassificationRuleSerializer
 
 
 class ClassificationPercolatorTest(TestCase):
@@ -17,7 +17,7 @@ class ClassificationPercolatorTest(TestCase):
             antonyms="空港送迎",
         )
         self.classification.save()
-        self.percolator = {
+        self.classification_rule = {
             "query": {
                 "bool": {
                     "should": [
@@ -41,33 +41,33 @@ class ClassificationPercolatorTest(TestCase):
             },
         }
 
-    def test_serializer(self):
-        percolator = ClassificationPercolatorSerializer(
+    def test_classification_rule_serializer(self):
+        classification_rule = ClassificationRuleSerializer(
             instance=self.classification
         ).data
-        percolator.pop("id")
-        self.assertEqual(self.percolator, percolator)
+        classification_rule.pop("id")
+        self.assertEqual(self.classification_rule, classification_rule)
 
-    def test_index_percolator(self):
-        percolator = ClassificationPercolatorSerializer(
+    def test_index_classification_rule(self):
+        classification_rule = ClassificationRuleSerializer(
             instance=self.classification
         ).data
-        doc_id = percolator.pop("id")
+        doc_id = classification_rule.pop("id")
         Classification.index_document(
             id=doc_id,
-            document=percolator,
+            document=classification_rule,
         )
         response = Classification.get_document(id=doc_id)
-        self.assertEqual(percolator, response["_source"])
+        self.assertEqual(classification_rule, response["_source"])
 
-    def test_match_percolate_query(self):
-        percolator = ClassificationPercolatorSerializer(
+    def test_match_classification_rule_query(self):
+        classification_rule = ClassificationRuleSerializer(
             instance=self.classification
         ).data
-        doc_id = percolator.pop("id")
+        doc_id = classification_rule.pop("id")
         Classification.index_document(
             id=doc_id,
-            document=percolator,
+            document=classification_rule,
         )
         Classification.refresh_index()
         response = Classification.search(
@@ -95,14 +95,14 @@ class ClassificationPercolatorTest(TestCase):
             response["hits"]["hits"][0]["_source"]["_meta"]["classification"],
         )
 
-    def test_not_match_percolate_query(self):
-        percolator = ClassificationPercolatorSerializer(
+    def test_not_match_classification_rule_query(self):
+        classification_rule = ClassificationRuleSerializer(
             instance=self.classification
         ).data
-        doc_id = percolator.pop("id")
+        doc_id = classification_rule.pop("id")
         Classification.index_document(
             id=doc_id,
-            document=percolator,
+            document=classification_rule,
         )
         Classification.refresh_index()
         response = Classification.search(

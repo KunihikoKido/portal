@@ -17,12 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 
-from apps.classifications.views import PercolatorViewSet
+from apps.classifications.views import ClassificationRuleViewSet
 from apps.documents.views import ProductDocumentViewSet
 
 router = routers.DefaultRouter()
 router.register("products", ProductDocumentViewSet)
-router.register("percolators", PercolatorViewSet)
+router.register("classification-rules", ClassificationRuleViewSet)
 
 
 urlpatterns = [

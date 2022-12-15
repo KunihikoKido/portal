@@ -1,4 +1,4 @@
 from .classification import (
-    ClassificationPercolatorSerializer,
+    ClassificationRuleSerializer,
     ClassificationSerializer,
 )

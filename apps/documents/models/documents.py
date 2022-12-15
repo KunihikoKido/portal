@@ -201,9 +201,7 @@ class ProductDocument(BaseDocument):
                 )
 
     def index_product(self):
-        from ..serializers import ProductDocumentSerializer
-
-        product = ProductDocumentSerializer(instance=self).data
+        product = self.get_serialized_product()
         doc_id = product.pop("id")
         self._meta.model.index_document(
             id=doc_id,
@@ -211,8 +209,6 @@ class ProductDocument(BaseDocument):
         )
 
     def delete_product(self):
-        from ..serializers import ProductDocumentSerializer
-
-        product = ProductDocumentSerializer(instance=self).data
+        product = self.get_serialized_product()
         doc_id = product.pop("id")
         self._meta.model.delete_index(id=doc_id)

@@ -12,7 +12,7 @@ class ClassificationSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class ClassificationPercolatorSerializer(serializers.ModelSerializer):
+class ClassificationRuleSerializer(serializers.ModelSerializer):
     id = serializers.SerializerMethodField()
     query = serializers.SerializerMethodField()
     _meta = serializers.SerializerMethodField()
