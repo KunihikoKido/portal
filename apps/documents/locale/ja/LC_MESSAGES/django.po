@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-14 15:58+0900\n"
+"POT-Creation-Date: 2022-12-16 01:59+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,15 +20,15 @@ msgstr ""
 
 #: apps/documents/admin/documents.py:11
 msgid "Execute indexing process"
-msgstr ""
+msgstr "インデックス処理を実行する"
 
 #: apps/documents/admin/documents.py:14 apps/documents/admin/documents.py:22
 msgid "If you wish to run the process, check the box and save the data."
-msgstr ""
+msgstr "処理を実行する場合は、チェックボックスにチェックして保存してください。"
 
 #: apps/documents/admin/documents.py:19
 msgid "Execute classify process"
-msgstr ""
+msgstr "分類処理を実行する"
 
 #: apps/documents/admin/documents.py:64
 msgid "Product options"
@@ -48,7 +48,7 @@ msgstr "分類オプション"
 
 #: apps/documents/admin/documents.py:90
 msgid "Actions"
-msgstr ""
+msgstr "アクション"
 
 #: apps/documents/admin/documents.py:100
 msgid "Classify documents"
@@ -70,9 +70,13 @@ msgstr "分類をクリアしました。"
 msgid "Index product documents."
 msgstr "商品ドキュメントをインデックスする"
 
-#: apps/documents/admin/documents.py:127
+#: apps/documents/admin/documents.py:127 apps/documents/admin/documents.py:142
 msgid "Product documents indexed."
 msgstr "商品ドキュメントをインデックスしました。"
+
+#: apps/documents/admin/documents.py:138
+msgid "Classified documents."
+msgstr "商品ドキュメントを分類しました。"
 
 #: apps/documents/apps.py:8
 msgid "documents"

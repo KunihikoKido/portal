@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-14 15:58+0900\n"
+"POT-Creation-Date: 2022-12-16 02:05+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,26 +19,27 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: apps/classifications/admin/classifications.py:17
-msgid "Execute classify process"
-msgstr ""
+msgid "Execute indexing process"
+msgstr "インデックス処理を実行する"
 
-#: apps/classifications/admin/classifications.py:20
+#: apps/classifications/admin/classifications.py:21
 msgid "If you wish to run the process, check the box and save the data."
-msgstr ""
+msgstr "処理を実行する場合は、チェックボックスにチェックして保存してください。"
 
-#: apps/classifications/admin/classifications.py:51
+#: apps/classifications/admin/classifications.py:52
 msgid "Query options"
 msgstr "分類条件オプション"
 
-#: apps/classifications/admin/classifications.py:60
+#: apps/classifications/admin/classifications.py:61
 msgid "Actions"
-msgstr ""
+msgstr "アクション"
 
-#: apps/classifications/admin/classifications.py:67
+#: apps/classifications/admin/classifications.py:68
 msgid "Index classification rules."
 msgstr "分類ルールをインデックスする"
 
-#: apps/classifications/admin/classifications.py:73
+#: apps/classifications/admin/classifications.py:74
+#: apps/classifications/admin/classifications.py:84
 msgid "Classification rules indexed."
 msgstr "分類ルールをインデックスしました。"
 

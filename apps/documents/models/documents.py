@@ -161,7 +161,7 @@ class ProductDocument(BaseDocument):
                     },
                     {
                         "terms": {
-                            "_meta.classifications.classification_type": [
+                            "_meta.classification.classification_type": [
                                 classification_type
                             ]
                         }
@@ -171,7 +171,7 @@ class ProductDocument(BaseDocument):
         }
 
         response = self._meta.model.search(
-            query=query, size=100, source=["_meta.classifications.*"]
+            query=query, size=100, source=["_meta.classification.*"]
         )
         return response
 
@@ -191,6 +191,7 @@ class ProductDocument(BaseDocument):
             response = self.percolate_document(
                 document=product, classification_type=classification_type
             )
+            print(response)
             for item in response["hits"]["hits"]:
                 source = item["_source"]["_meta"]["classification"]
                 classification_type = source["classification_type"]

@@ -13,8 +13,8 @@ from ..models import (
 
 
 class ClassificationAdminForm(forms.ModelForm):
-    execute_classify_process = forms.BooleanField(
-        label=_("Execute classify process"),
+    execute_indexing_process = forms.BooleanField(
+        label=_("Execute indexing process"),
         required=False,
         initial=True,
         help_text=_(
@@ -34,7 +34,7 @@ class BaseClassificationAdmin(admin.ModelAdmin):
         "slug",
         "name",
     )
-    actions = ["index_classifications"]
+    actions = ["index_classification_rules"]
     search_fields = ("slug", "name")
 
     fieldsets = (
@@ -60,13 +60,13 @@ class BaseClassificationAdmin(admin.ModelAdmin):
         (
             _("Actions"),
             {
-                "fields": ("execute_classify_process",),
+                "fields": ("execute_indexing_process",),
             },
         ),
     )
 
     @admin.action(description=_("Index classification rules."))
-    def index_classifications(self, request, queryset):
+    def index_classification_rules(self, request, queryset):
         for obj in queryset:
             obj.index_classification()
         self.message_user(
@@ -77,8 +77,13 @@ class BaseClassificationAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
-        if form.cleaned_data["execute_classify_process"]:
+        if form.cleaned_data["execute_indexing_process"]:
             obj.index_classification()
+            self.message_user(
+                request,
+                _("Classification rules indexed."),
+                messages.SUCCESS,
+            )
 
     def delete_model(self, request, obj):
         obj.delete_classification()
