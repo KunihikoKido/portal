@@ -131,10 +131,15 @@ class ProductDocumentAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
 
-        if form.cleaned_data["execute_indexing_process"]:
-            obj.index_product()
+    def save_related(self, request, form, formsets, change):
+        super().save_related(request, form, formsets, change)
         if form.cleaned_data["execute_classify_process"]:
-            obj.classify()
+            form.instance.classify()
+            self.message_user(request, _("Classified documents."))
+
+        if form.cleaned_data["execute_indexing_process"]:
+            form.instance.index_product()
+            self.message_user(request, _("Product documents indexed."))
 
     def delete_model(self, request, obj):
         obj.delete_product()

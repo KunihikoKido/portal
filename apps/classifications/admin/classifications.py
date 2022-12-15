@@ -16,6 +16,7 @@ class ClassificationAdminForm(forms.ModelForm):
     execute_classify_process = forms.BooleanField(
         label=_("Execute classify process"),
         required=False,
+        initial=True,
         help_text=_(
             "If you wish to run the process, "
             "check the box and save the data."
