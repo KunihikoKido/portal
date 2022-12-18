@@ -31,3 +31,29 @@ class RecommendationModelTest(TestCase):
             self.prefix_urls,
             self.recommendation.get_prefix_urls(),
         )
+
+    def test_search_recommendations(self):
+        from ..serializers import RecommendationRuleSerializer
+
+        self.recommendation.index_recommendation()
+        self.recommendation.refresh_index()
+        view_url = "https://example.org/news/0001"
+        response = self.recommendation.search(
+            query={
+                "percolate": {
+                    "field": "query",
+                    "document": {"prefix_url": view_url},
+                }
+            },
+            source_excludes=["query"],
+        )
+        self.assertEqual(1, response["hits"]["total"]["value"])
+
+        # Match recommendation data
+        result_recommendation = response["hits"]["hits"][0]["_source"]
+        recommendation = RecommendationRuleSerializer(
+            instance=self.recommendation
+        ).data
+        recommendation.pop("id")
+        recommendation.pop("query")
+        self.assertEqual(recommendation, result_recommendation)

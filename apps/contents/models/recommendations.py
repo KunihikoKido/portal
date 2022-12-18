@@ -38,7 +38,7 @@ class Recommendation(BaseContent):
 
     def index_recommendation(self):
         recommendation = self.get_serialized_recommendation()
-        doc_id = recommendation.pop("doc_id")
+        doc_id = recommendation.pop("id")
         self._meta.model.index_document(id=doc_id, document=recommendation)
 
     def delete_recommendation(self):

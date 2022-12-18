@@ -25,7 +25,6 @@ class RecommendationRuleSerializerTest(TestCase):
         self.recommendation.save()
 
         self.recommendation_rule = {
-            "doc_id": "1",
             "title": "2022年、年越しライブ",
             "link": "https://wwww.google.com/",
             "publication_period": {
@@ -56,4 +55,5 @@ class RecommendationRuleSerializerTest(TestCase):
         recommendation_rule = RecommendationRuleSerializer(
             instance=self.recommendation
         ).data
+        recommendation_rule.pop("id")
         self.assertEqual(self.recommendation_rule, recommendation_rule)

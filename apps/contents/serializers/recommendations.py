@@ -7,14 +7,13 @@ from ..models import Recommendation
 
 
 class RecommendationRuleSerializer(serializers.ModelSerializer):
-    doc_id = serializers.SerializerMethodField()
     publication_period = serializers.SerializerMethodField()
     query = serializers.SerializerMethodField()
 
     class Meta:
         model = Recommendation
         fields = [
-            "doc_id",
+            "id",
             "title",
             "link",
             "publication_period",
@@ -22,7 +21,7 @@ class RecommendationRuleSerializer(serializers.ModelSerializer):
             "query",
         ]
 
-    def get_doc_id(self, obj):
+    def get_id(self, obj):
         return str(obj.id)
 
     def get_publication_period(self, obj):
