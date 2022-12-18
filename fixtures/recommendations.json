@@ -1,0 +1,16 @@
+[
+    {
+        "model": "contents.recommendation",
+        "pk": 1,
+        "fields": {
+            "prefix_url": "https://www.veltra.com/jp/japan/\r\nhttps://www.veltra.com/jp/yokka/category/travel/",
+            "is_active": true,
+            "created": "2022-12-18T05:02:36.061Z",
+            "updated": "2022-12-18T05:08:42.362Z",
+            "title": "世界と日本の「美味しい」をお取り寄せ",
+            "link": "https://store.veltra.com/otoriyose/top.aspx",
+            "start_datetime": "2022-12-18T05:02:17Z",
+            "end_datetime": "2099-12-18T05:02:21Z"
+        }
+    }
+]

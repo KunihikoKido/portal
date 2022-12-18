@@ -18,11 +18,13 @@ from django.urls import include, path
 from rest_framework import routers
 
 from apps.classifications.views import ClassificationRuleViewSet
+from apps.contents.views import RecommendationRuleViewSet
 from apps.documents.views import ProductDocumentViewSet
 
 router = routers.DefaultRouter()
 router.register("products", ProductDocumentViewSet)
 router.register("classification-rules", ClassificationRuleViewSet)
+router.register("recommendation-rules", RecommendationRuleViewSet)
 
 
 urlpatterns = [

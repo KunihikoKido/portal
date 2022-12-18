@@ -1,0 +1,84 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-18 13:56+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: apps/contents/admin/recommendations.py:10
+msgid "Execute indexing process"
+msgstr "インデックス処理を実行する"
+
+#: apps/contents/admin/recommendations.py:14
+msgid "If you wish to run the process, check the box and save the data."
+msgstr "処理を実行する場合は、チェックボックスにチェックして保存してください。"
+
+#: apps/contents/admin/recommendations.py:42
+msgid "publication"
+msgstr "公開"
+
+#: apps/contents/admin/recommendations.py:53
+msgid "Index recommendation rules."
+msgstr "おすすめ条件をインデックスする。"
+
+#: apps/contents/admin/recommendations.py:59
+#: apps/contents/admin/recommendations.py:69
+msgid "Recommendation rules indexed."
+msgstr "おすすめ条件がインデックスされました。"
+
+#: apps/contents/apps.py:8
+msgid "contents"
+msgstr "コンテンツ"
+
+#: apps/contents/models/base.py:8
+msgid "prefix urls"
+msgstr "プレフィックスURL"
+
+#: apps/contents/models/base.py:9
+msgid "active"
+msgstr "有効"
+
+#: apps/contents/models/base.py:10
+msgid "created"
+msgstr "作成日時"
+
+#: apps/contents/models/base.py:11
+msgid "updated"
+msgstr "更新日時"
+
+#: apps/contents/models/recommendations.py:8
+msgid "title"
+msgstr "タイトル"
+
+#: apps/contents/models/recommendations.py:9
+msgid "link"
+msgstr "リンクURL"
+
+#: apps/contents/models/recommendations.py:11
+msgid "start datetime"
+msgstr "開始日時"
+
+#: apps/contents/models/recommendations.py:14
+msgid "end datetime"
+msgstr "終了日時"
+
+#: apps/contents/models/recommendations.py:18
+msgid "recommendation"
+msgstr "おすすめ"
+
+#: apps/contents/models/recommendations.py:19
+msgid "recommendations"
+msgstr "おすすめ"

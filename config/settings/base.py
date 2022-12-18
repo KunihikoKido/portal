@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "apps.search",
     "apps.classifications",
     "apps.documents",
+    "apps.contents",
 ]
 
 MIDDLEWARE = [

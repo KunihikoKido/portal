@@ -1,0 +1,14 @@
+{
+    "bool": {
+        "should": [
+            {% for url in recommendation.get_prefix_urls %}
+            {
+                "prefix": {
+                    "prefix_url": "{{ url }}"
+                }
+            }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ],
+        "minimum_should_match": "1"
+    }
+}
