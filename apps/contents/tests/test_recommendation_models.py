@@ -7,6 +7,7 @@ from ..models import Recommendation
 
 class RecommendationModelTest(TestCase):
     def setUp(self):
+        super().setUp()
         start_datetime = timezone.now() - timezone.timedelta(days=7)
         end_datetime = timezone.now() + timezone.timedelta(days=7)
         self.prefix_urls = [
@@ -24,7 +25,8 @@ class RecommendationModelTest(TestCase):
             end_datetime=end_datetime,
         )
         self.recommendation.save()
-        return super().setUp()
+        self.recommendation.index_recommendation()
+        self.recommendation.refresh_index()
 
     def test_get_prefix_urls(self):
         self.assertEqual(
@@ -35,8 +37,12 @@ class RecommendationModelTest(TestCase):
     def test_search_recommendations(self):
         from ..serializers import RecommendationRuleSerializer
 
-        self.recommendation.index_recommendation()
-        self.recommendation.refresh_index()
+        recommendation = RecommendationRuleSerializer(
+            instance=self.recommendation
+        ).data
+        recommendation.pop("id")
+        recommendation.pop("query")
+
         view_url = "https://example.org/news/0001"
         response = self.recommendation.search(
             query={
@@ -47,13 +53,8 @@ class RecommendationModelTest(TestCase):
             },
             source_excludes=["query"],
         )
-        self.assertEqual(1, response["hits"]["total"]["value"])
 
-        # Match recommendation data
-        result_recommendation = response["hits"]["hits"][0]["_source"]
-        recommendation = RecommendationRuleSerializer(
-            instance=self.recommendation
-        ).data
-        recommendation.pop("id")
-        recommendation.pop("query")
-        self.assertEqual(recommendation, result_recommendation)
+        self.assertEqual(1, response["hits"]["total"]["value"])
+        self.assertEqual(
+            recommendation, response["hits"]["hits"][0]["_source"]
+        )

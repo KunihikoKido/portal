@@ -8,6 +8,10 @@
             "type": "keyword",
             "ignore_above": 256
         },
+        "prefix_url": {
+            "type": "keyword",
+            "ignore_above": 256
+        },
         "link": {
             "type": "keyword",
             "ignore_above": 256
