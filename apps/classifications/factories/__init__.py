@@ -1,0 +1,5 @@
+from .categories import CategoryClassificationFactory
+from .cities import CityClassificationFactory
+from .countries import CountryClassificationFactory
+from .regions import RegionClassificationFactory
+from .seasons import SeasonClassificationFactory
